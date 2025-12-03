@@ -1,3 +1,35 @@
-[gd_scene format=3 uid="uid://bgtgpb3jxkm56"]
+[gd_scene load_steps=5 format=3 uid="uid://bgtgpb3jxkm56"]
 
-[node name="Node3D" type="Node3D"]
+[ext_resource type="Material" uid="uid://dy2vo6xbu52ky" path="res://Materials/ground.tres" id="1_4e0oo"]
+[ext_resource type="PackedScene" uid="uid://dvwa2shu2t7ax" path="res://snowman.tscn" id="1_g45l7"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_e4ond"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_jiq1w"]
+
+[node name="Main" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(-24.8503, 0, 0, 0, 1.17022e-06, 24.7447, 0, -26.7715, 1.08163e-06, 0, -0.0245649, 0)
+mesh = SubResource("QuadMesh_e4ond")
+surface_material_override/0 = ExtResource("1_4e0oo")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConvexPolygonShape3D_jiq1w")
+
+[node name="Snowman" parent="." instance=ExtResource("1_g45l7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.14)
+axis_lock_angular_x = true
+axis_lock_angular_z = true
+
+[node name="Camera3D" type="Camera3D" parent="Snowman"]
+transform = Transform3D(1, 0, 0, 0, 0.79653, 0.604599, 0, -0.604599, 0.79653, 0.3, 1.9, 1)
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.506335, 0.550474, -0.66378, -3.33425e-09, 0.769745, 0.638351, 0.862337, -0.32322, 0.389749, 0, 2.88895, 2.52463)
+light_color = Color(1, 0.882353, 0.698039, 1)
+shadow_enabled = true
+shadow_opacity = 0.9
+shadow_blur = 1.5
