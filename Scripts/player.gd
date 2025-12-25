@@ -1,4 +1,13 @@
 extends CharacterBody3D
+class_name Player
+
+enum player_state {
+	IDLE,
+	MOVING,
+	SPRINTING,
+	DIGGING,
+	JUMPING
+}
 
 @export_group("Camera")
 @export_range(0.0, 1.0) var mouseSensitivity := .25
@@ -16,6 +25,14 @@ extends CharacterBody3D
 var gravity := -30
 var camera_input_direction := Vector2.ZERO
 var last_mov_direction := Vector3.FORWARD
+var current_state = player_state.IDLE
+
+"""Digging parameters"""
+var canDig := false
+var isDigging := false
+var digTime := 0.0
+const MAX_DIG_TIME := 3.0
+signal finishedDigging
 
 func _input(event):
 	if (event.is_action_pressed("left_click")):
@@ -31,6 +48,27 @@ func _unhandled_input(event):
 		camera_input_direction = event.screen_relative * mouseSensitivity
 
 func _physics_process(delta):
+	
+	rotateCamera(delta)
+	if current_state != player_state.DIGGING:
+		movePlayer(delta)
+	
+	if canDig and Input.is_action_pressed("Dig"):
+		current_state = player_state.DIGGING
+		holdDigAction(delta)
+	elif current_state == player_state.DIGGING:
+		resetAfterDigging(true)
+
+
+func rotateCamera(delta: float):
+	"""Camera rotation via mouse motion"""
+	cameraPivot.rotation.x += camera_input_direction.y * delta
+	cameraPivot.rotation.x = clamp(cameraPivot.rotation.x, -PI/6.0, PI/3.0)
+	cameraPivot.rotation.y -= camera_input_direction.x * delta
+	
+	camera_input_direction = Vector2.ZERO
+
+func movePlayer(delta: float):
 	"""Setup for player movement"""
 	var direction := Vector2.ZERO
 	direction = Input.get_vector("Left","Right","Forward","Backward")
@@ -39,13 +77,6 @@ func _physics_process(delta):
 	var verticalVelocity := velocity.y
 	velocity.y = 0
 	var move_direction : Vector3 = forward * direction.y + right * direction.x
-	
-	"""Camera rotation via mouse motion"""
-	cameraPivot.rotation.x += camera_input_direction.y * delta
-	cameraPivot.rotation.x = clamp(cameraPivot.rotation.x, -PI/6.0, PI/3.0)
-	cameraPivot.rotation.y -= camera_input_direction.x * delta
-	
-	camera_input_direction = Vector2.ZERO
 	
 	"""Moves player"""
 	move_direction.y = 0.0
@@ -64,3 +95,22 @@ func _physics_process(delta):
 		last_mov_direction = move_direction
 	var target_angle :=  Vector3.FORWARD.signed_angle_to(last_mov_direction, Vector3.UP)
 	player_skin.global_rotation.y = lerp_angle(player_skin.rotation.y, target_angle, rotationSpeed * delta)
+
+func holdDigAction(delta: float):
+	if Input.is_action_pressed("Dig"):
+		#remove any velocity in the player when digging
+		velocity = Vector3.ZERO
+		digTime += delta
+
+		if digTime >= MAX_DIG_TIME:
+			print("finished Digging!")
+			resetAfterDigging(false)
+			emit_signal("finishedDigging")
+	elif digTime > 0:
+		print("Digging canceled, progress lost")
+		resetAfterDigging(true)
+	
+func resetAfterDigging(canceled: bool):
+	current_state = player_state.IDLE
+	canDig = canceled
+	digTime = 0.0

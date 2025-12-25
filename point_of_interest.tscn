@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=3 uid="uid://l4412yq7568"]
+
+[ext_resource type="Script" uid="uid://3nq6a431s4v3" path="res://Scripts/Waypoint.gd" id="1_dsmrs"]
+[ext_resource type="Material" uid="uid://t3yma0weqa0d" path="res://Materials/point_of_interest.tres" id="1_you40"]
+[ext_resource type="Texture2D" uid="uid://c5wno254pwfkk" path="res://picture/Arrow.png" id="2_dsmrs"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bmrny"]
+size = Vector3(3, 0.2, 3)
+
+[sub_resource type="BoxMesh" id="BoxMesh_yev1m"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bmrny"]
+
+[node name="DigSpot" type="Area3D"]
+script = ExtResource("1_dsmrs")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.099999994, 0)
+shape = SubResource("BoxShape3D_bmrny")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, 0.2, 0, 0, 0, 3, 0, 0.099999994, 0)
+mesh = SubResource("BoxMesh_yev1m")
+skeleton = NodePath("../../..")
+surface_material_override/0 = ExtResource("1_you40")
+
+[node name="Arrow" type="Sprite3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 1.6, 0)
+material_overlay = SubResource("ShaderMaterial_bmrny")
+billboard = 1
+texture = ExtResource("2_dsmrs")
+region_enabled = true
+region_rect = Rect2(4.0653877, 0, 56.475643, 64)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

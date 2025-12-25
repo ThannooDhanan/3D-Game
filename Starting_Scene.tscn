@@ -1,12 +1,15 @@
-[gd_scene load_steps=13 format=3 uid="uid://bgtgpb3jxkm56"]
+[gd_scene load_steps=15 format=3 uid="uid://bgtgpb3jxkm56"]
 
 [ext_resource type="Material" uid="uid://dy2vo6xbu52ky" path="res://Materials/ground.tres" id="1_4e0oo"]
 [ext_resource type="PackedScene" uid="uid://d2w684tflowaa" path="res://snowman.tscn" id="1_g45l7"]
 [ext_resource type="ArrayMesh" uid="uid://doapevvd5fwf2" path="res://Objects/carrot.obj" id="3_b4p0v"]
 [ext_resource type="Material" uid="uid://ckm4aknro6eh1" path="res://Materials/carrot.tres" id="4_t3ix3"]
 [ext_resource type="Material" uid="uid://cp8ddjlkjemya" path="res://Materials/Snowman_arm.tres" id="5_y1wb8"]
+[ext_resource type="PackedScene" uid="uid://dw4agfysx3wke" path="res://waypoint_and_return.tscn" id="6_t3ix3"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_e4ond"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_b4p0v"]
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_t3ix3"]
 data = PackedVector3Array(0.5, -0.5, 0, -0.5, -0.5, 0, 0.5, 0.5, 0, -0.5, -0.5, 0, -0.5, 0.5, 0, 0.5, 0.5, 0)
@@ -30,6 +33,7 @@ mesh = SubResource("QuadMesh_e4ond")
 surface_material_override/0 = ExtResource("1_4e0oo")
 
 [node name="StaticBody3D2" type="StaticBody3D" parent="MeshInstance3D"]
+physics_material_override = SubResource("PhysicsMaterial_b4p0v")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D2"]
 shape = SubResource("ConcavePolygonShape3D_t3ix3")
@@ -97,4 +101,8 @@ metadata/_edit_group_ = true
 [node name="CollisionShape3D" type="CollisionShape3D" parent="environ/pine4/StaticBody3D"]
 shape = SubResource("BoxShape3D_b4p0v")
 
+[node name="WaypointAndReturn" parent="." instance=ExtResource("6_t3ix3")]
+transform = Transform3D(-0.041718695, 0, 0.9991294, 0, 1, 0, -0.9991294, 0, -0.041718695, -2.5750403, 0, -0.45673704)
+
 [editable path="Snowman"]
+[editable path="WaypointAndReturn"]

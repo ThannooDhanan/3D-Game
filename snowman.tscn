@@ -1,6 +1,6 @@
 [gd_scene load_steps=18 format=3 uid="uid://d2w684tflowaa"]
 
-[ext_resource type="Script" uid="uid://bdts2pfalxpxs" path="res://Scripts/mover.gd" id="1_p2611"]
+[ext_resource type="Script" uid="uid://bdts2pfalxpxs" path="res://Scripts/player.gd" id="1_p2611"]
 [ext_resource type="Material" uid="uid://cdn81ab24png" path="res://Materials/Snowman_Snow.tres" id="1_qoueb"]
 [ext_resource type="Material" uid="uid://cp8ddjlkjemya" path="res://Materials/Snowman_arm.tres" id="2_1pmes"]
 [ext_resource type="Material" uid="uid://d8xwkh2jmqux" path="res://Materials/Black_Felt.tres" id="3_jjtob"]
@@ -36,6 +36,7 @@ max_velocity = 5
 unique_name_in_owner = true
 
 [node name="eyes" type="Node3D" parent="SnowmanSkin"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.045853794, 0)
 
 [node name="eye1" type="MeshInstance3D" parent="SnowmanSkin/eyes"]
 transform = Transform3D(0.035, 0, 0, 0, 0.035, 0, 0, 0, 0.035, 0.065, 0.97, -0.185)
@@ -48,31 +49,31 @@ mesh = SubResource("SphereMesh_n26yv")
 surface_material_override/0 = ExtResource("6_6cxhj")
 
 [node name="Bottom" type="MeshInstance3D" parent="SnowmanSkin"]
-transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0.4, 0)
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0.3541462, 0)
 mesh = SubResource("SphereMesh_4w5jw")
 skeleton = NodePath("../..")
 surface_material_override/0 = ExtResource("1_qoueb")
 
 [node name="Top" type="MeshInstance3D" parent="SnowmanSkin"]
-transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0.9, 0)
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 0, 0.8541462, 0)
 mesh = SubResource("SphereMesh_ynyh5")
 skeleton = NodePath("../..")
 surface_material_override/0 = ExtResource("1_qoueb")
 
 [node name="Arm_right" type="MeshInstance3D" parent="SnowmanSkin"]
-transform = Transform3D(0.306418, -0.0642788, 0, 0.257115, 0.0766044, 0, 0, 0, 0.1, 0.294711, 0.671536, 0)
+transform = Transform3D(0.306418, -0.0642788, 0, 0.257115, 0.0766044, 0, 0, 0, 0.1, 0.294711, 0.62568223, 0)
 mesh = SubResource("BoxMesh_qvh45")
 skeleton = NodePath("../..")
 surface_material_override/0 = ExtResource("2_1pmes")
 
 [node name="Arm_left" type="MeshInstance3D" parent="SnowmanSkin"]
-transform = Transform3D(0.306418, 0.0642788, 0, -0.257115, 0.0766044, 0, 0, 0, 0.1, -0.295, 0.672, 0)
+transform = Transform3D(0.306418, 0.0642788, 0, -0.257115, 0.0766044, 0, 0, 0, 0.1, -0.295, 0.6261462, 0)
 mesh = SubResource("BoxMesh_8d6hk")
 skeleton = NodePath("../..")
 surface_material_override/0 = ExtResource("2_1pmes")
 
 [node name="Hat" type="Node3D" parent="SnowmanSkin"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0373874, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.083241194, 0)
 
 [node name="Rim" type="MeshInstance3D" parent="SnowmanSkin/Hat"]
 transform = Transform3D(0.5, 0, 0, 0, 0.015, 0, 0, 0, 0.5, 0, 1.08, 0)
@@ -85,12 +86,13 @@ mesh = SubResource("CylinderMesh_xfbe7")
 surface_material_override/0 = ExtResource("3_jjtob")
 
 [node name="carrot" type="MeshInstance3D" parent="SnowmanSkin"]
-transform = Transform3D(0.1, 0, 0, 0, -4.37114e-09, 0.1, 0, -0.1, -4.37114e-09, 0, 0.9, -0.195432)
+transform = Transform3D(0.1, 0, 0, 0, -4.37114e-09, 0.1, 0, -0.1, -4.37114e-09, 0, 0.8541462, -0.195432)
 mesh = ExtResource("4_jgw4j")
 skeleton = NodePath("../..")
 surface_material_override/0 = ExtResource("5_clocp")
 
 [node name="buttons" type="Node3D" parent="SnowmanSkin"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.045853794, 0)
 
 [node name="button1" type="MeshInstance3D" parent="SnowmanSkin/buttons"]
 transform = Transform3D(0.035, 0, 0, 0, 0.035, 0, 0, 0, 0.035, 0, 0.63, -0.277)

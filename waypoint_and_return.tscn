@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://dw4agfysx3wke"]
+
+[ext_resource type="Material" uid="uid://dw2q727oh5sog" path="res://Materials/home_point.tres" id="1_qhuge"]
+[ext_resource type="Script" uid="uid://bvtcgisgb2rpi" path="res://Scripts/waypoint_and_home.gd" id="1_w1vx1"]
+[ext_resource type="PackedScene" uid="uid://l4412yq7568" path="res://point_of_interest.tscn" id="2_bmrny"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w1vx1"]
+size = Vector3(3, 0.2, 3)
+
+[sub_resource type="BoxMesh" id="BoxMesh_tdds4"]
+
+[node name="WaypointAndReturn" type="Node3D"]
+script = ExtResource("1_w1vx1")
+
+[node name="Checkpoints" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[node name="PointOfInterest" parent="Checkpoints" instance=ExtResource("2_bmrny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 0)
+
+[node name="PointOfInterest2" parent="Checkpoints" instance=ExtResource("2_bmrny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, -12)
+
+[node name="PointOfInterest3" parent="Checkpoints" instance=ExtResource("2_bmrny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 12)
+
+[node name="Home" type="Area3D" parent="."]
+unique_name_in_owner = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Home"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.099999994, 0)
+shape = SubResource("BoxShape3D_w1vx1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Home"]
+transform = Transform3D(3, 0, 0, 0, 0.2, 0, 0, 0, 3, 0, 0.1, 0)
+mesh = SubResource("BoxMesh_tdds4")
+surface_material_override/0 = ExtResource("1_qhuge")
