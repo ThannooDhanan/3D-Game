@@ -20,9 +20,14 @@ enum player_state {
 @export var acceleration := 12.0
 @export var rotationSpeed := 10.0
 @export var jumpStrength := 10.0
+@export var coyote_time := .1
+@onready var health := %HealthComponent
+var treasureInHand : Treasure
 
+"""Miscelaneous player status"""
 @onready var player_skin := %"SnowmanSkin"
-var gravity := -30
+var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+var was_on_floor := true
 var camera_input_direction := Vector2.ZERO
 var last_mov_direction := Vector3.FORWARD
 var current_state = player_state.IDLE
@@ -48,7 +53,6 @@ func _unhandled_input(event):
 		camera_input_direction = event.screen_relative * mouseSensitivity
 
 func _physics_process(delta):
-	
 	rotateCamera(delta)
 	if current_state != player_state.DIGGING:
 		movePlayer(delta)
@@ -80,16 +84,35 @@ func movePlayer(delta: float):
 	
 	"""Moves player"""
 	move_direction.y = 0.0
-	velocity = velocity.move_toward(move_direction.normalized() * speed, acceleration * delta)	
-	velocity.y = verticalVelocity + gravity * delta
-	velocity.y = clamp(velocity.y, -300, INF)
+	velocity = velocity.move_toward(move_direction.normalized() * speed, acceleration * delta)
+	if !is_on_floor():
+		#A coyote timer make jumping mor forgiving in the game.
+		if was_on_floor:
+			get_tree().create_timer(coyote_time).timeout.connect(coyote_timeout)
+		velocity.y = verticalVelocity - (gravity * delta)
+		velocity.y = clamp(velocity.y, -300, 10)
+	else:
+		was_on_floor = true
 	
+	jump()
+	face_player(move_direction, delta)
+
+func jump():
 	"""Jumps"""
-	var is_jumping := Input.is_action_just_pressed("jump") and is_on_floor()
-	if is_jumping:
+	var is_jumping := Input.is_action_just_pressed("jump")
+	if is_jumping and ( was_on_floor):
+		if treasureInHand:
+			print("I have: " + treasureInHand.name)
+		else:
+			print("I have no treasure :(")
 		velocity.y += jumpStrength
+		was_on_floor = false
 	move_and_slide()
 	
+func coyote_timeout():
+	was_on_floor = false
+
+func face_player(move_direction: Vector3, delta: float):
 	"""Faces Player"""
 	if move_direction.length() > 0.2:
 		last_mov_direction = move_direction

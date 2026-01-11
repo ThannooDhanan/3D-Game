@@ -1,12 +1,13 @@
-[gd_scene load_steps=18 format=3 uid="uid://d2w684tflowaa"]
+[gd_scene load_steps=19 format=3 uid="uid://d2w684tflowaa"]
 
 [ext_resource type="Script" uid="uid://bdts2pfalxpxs" path="res://Scripts/player.gd" id="1_p2611"]
-[ext_resource type="Material" uid="uid://cdn81ab24png" path="res://Materials/Snowman_Snow.tres" id="1_qoueb"]
-[ext_resource type="Material" uid="uid://cp8ddjlkjemya" path="res://Materials/Snowman_arm.tres" id="2_1pmes"]
-[ext_resource type="Material" uid="uid://d8xwkh2jmqux" path="res://Materials/Black_Felt.tres" id="3_jjtob"]
+[ext_resource type="Material" uid="uid://cdn81ab24png" path="res://Materials/Color Materials/Snowman_Snow.tres" id="1_qoueb"]
+[ext_resource type="Material" uid="uid://cp8ddjlkjemya" path="res://Materials/Color Materials/Snowman_arm.tres" id="2_1pmes"]
+[ext_resource type="Material" uid="uid://d8xwkh2jmqux" path="res://Materials/Color Materials/Black_Felt.tres" id="3_jjtob"]
 [ext_resource type="ArrayMesh" uid="uid://doapevvd5fwf2" path="res://Objects/carrot.obj" id="4_jgw4j"]
-[ext_resource type="Material" uid="uid://ckm4aknro6eh1" path="res://Materials/carrot.tres" id="5_clocp"]
-[ext_resource type="Material" uid="uid://cdujprnbgrx66" path="res://Materials/charcoal.tres" id="6_6cxhj"]
+[ext_resource type="Material" uid="uid://ckm4aknro6eh1" path="res://Materials/Color Materials/carrot.tres" id="5_clocp"]
+[ext_resource type="Material" uid="uid://cdujprnbgrx66" path="res://Materials/Color Materials/charcoal.tres" id="6_6cxhj"]
+[ext_resource type="Script" uid="uid://bwyr768688hks" path="res://Scripts/components/health_component.gd" id="8_i22mi"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_1q11d"]
 
@@ -24,11 +25,12 @@
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_xfbe7"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6q38s"]
-
 [sub_resource type="SphereShape3D" id="SphereShape3D_m4omw"]
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6q38s"]
+
 [node name="Snowman" type="CharacterBody3D"]
+collision_mask = 3
 script = ExtResource("1_p2611")
 max_velocity = 5
 
@@ -104,10 +106,6 @@ transform = Transform3D(0.035, 0, 0, 0, 0.035, 0, 0, 0, 0.035, 0, 0.503, -0.337)
 mesh = SubResource("SphereMesh_1q11d")
 surface_material_override/0 = ExtResource("6_6cxhj")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.7, 0, 0, 0, 0.6, 0, 0, 0, 0.7, 0, 0.655056, 0)
-shape = SubResource("CapsuleShape3D_6q38s")
-
 [node name="Camera Pivot" type="Node3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0.95, 0)
@@ -119,3 +117,13 @@ spring_length = 1.5
 
 [node name="playerCam" type="Camera3D" parent="Camera Pivot/SpringArm3D"]
 unique_name_in_owner = true
+
+[node name="HealthComponent" type="Node3D" parent="."]
+unique_name_in_owner = true
+script = ExtResource("8_i22mi")
+health = 10
+metadata/_custom_type_script = "uid://bwyr768688hks"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(0.7, 0, 0, 0, 0.6, 0, 0, 0, 0.7, 0, 0.655056, 0)
+shape = SubResource("CapsuleShape3D_6q38s")

@@ -61,7 +61,12 @@ Dig={
 ]
 }
 
+[layer_names]
+
+3d_render/layer_2="Ground"
+
 [physics]
 
 common/physics_ticks_per_second=120
 common/max_physics_steps_per_frame=12
+3d/default_gravity=30.0

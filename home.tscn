@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://b3uo6entoqbxq"]
+
+[ext_resource type="Material" uid="uid://dw2q727oh5sog" path="res://Materials/Color Materials/home_point.tres" id="1_tt30a"]
+[ext_resource type="Texture2D" uid="uid://c5wno254pwfkk" path="res://picture/Arrow.png" id="2_1ey7h"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w1vx1"]
+size = Vector3(3, 0.2, 3)
+
+[sub_resource type="BoxMesh" id="BoxMesh_tdds4"]
+
+[node name="Home" type="Area3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.099999994, 0)
+shape = SubResource("BoxShape3D_w1vx1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, 0.2, 0, 0, 0, 3, 0, 0.1, 0)
+mesh = SubResource("BoxMesh_tdds4")
+surface_material_override/0 = ExtResource("1_tt30a")
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+billboard = 2
+texture = ExtResource("2_1ey7h")

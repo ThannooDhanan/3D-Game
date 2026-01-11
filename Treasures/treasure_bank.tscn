@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cwat0tklgfm1g"]
+
+[ext_resource type="Script" uid="uid://orv0n61cdivl" path="res://Scripts/treasures/treasure_bank.gd" id="1_gxioj"]
+
+[node name="Treasure Bank" type="Node3D"]
+script = ExtResource("1_gxioj")

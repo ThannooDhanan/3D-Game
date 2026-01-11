@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://l4412yq7568"]
 
 [ext_resource type="Script" uid="uid://3nq6a431s4v3" path="res://Scripts/Waypoint.gd" id="1_dsmrs"]
-[ext_resource type="Material" uid="uid://t3yma0weqa0d" path="res://Materials/point_of_interest.tres" id="1_you40"]
+[ext_resource type="Material" uid="uid://t3yma0weqa0d" path="res://Materials/Color Materials/point_of_interest.tres" id="1_you40"]
 [ext_resource type="Texture2D" uid="uid://c5wno254pwfkk" path="res://picture/Arrow.png" id="2_dsmrs"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bmrny"]
@@ -28,7 +28,7 @@ surface_material_override/0 = ExtResource("1_you40")
 unique_name_in_owner = true
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 1.6, 0)
 material_overlay = SubResource("ShaderMaterial_bmrny")
-billboard = 1
+billboard = 2
 texture = ExtResource("2_dsmrs")
 region_enabled = true
 region_rect = Rect2(4.0653877, 0, 56.475643, 64)
