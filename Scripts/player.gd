@@ -37,7 +37,7 @@ var canDig := false
 var isDigging := false
 var digTime := 0.0
 const MAX_DIG_TIME := 3.0
-signal finishedDigging
+signal finishedDigging(player: Player)
 
 func _input(event):
 	if (event.is_action_pressed("left_click")):
@@ -128,7 +128,7 @@ func holdDigAction(delta: float):
 		if digTime >= MAX_DIG_TIME:
 			print("finished Digging!")
 			resetAfterDigging(false)
-			emit_signal("finishedDigging")
+			emit_signal("finishedDigging", self)
 	elif digTime > 0:
 		print("Digging canceled, progress lost")
 		resetAfterDigging(true)

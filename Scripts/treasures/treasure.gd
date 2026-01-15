@@ -8,7 +8,11 @@ class_name Treasure
 
 var velocity := Vector3.ZERO
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+
+@export_category("Treasure properties")
+@export var displayName : String
 @export_range(5,50) var value: int 
+
 
 func _physics_process(delta: float):
 	#simple rotation for the object

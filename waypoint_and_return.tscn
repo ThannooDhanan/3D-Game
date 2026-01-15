@@ -1,11 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://dw4agfysx3wke"]
+[gd_scene load_steps=5 format=3 uid="uid://dw4agfysx3wke"]
 
 [ext_resource type="Script" uid="uid://bvtcgisgb2rpi" path="res://Scripts/waypoint_and_home.gd" id="1_w1vx1"]
 [ext_resource type="PackedScene" uid="uid://l4412yq7568" path="res://point_of_interest.tscn" id="2_bmrny"]
+[ext_resource type="PackedScene" uid="uid://cwat0tklgfm1g" path="res://Treasures/treasure_bank.tscn" id="2_w1vx1"]
 [ext_resource type="PackedScene" uid="uid://b3uo6entoqbxq" path="res://home.tscn" id="3_bmrny"]
 
 [node name="WaypointAndReturn" type="Node3D"]
 script = ExtResource("1_w1vx1")
+
+[node name="Treasure Bank" parent="." instance=ExtResource("2_w1vx1")]
+unique_name_in_owner = true
 
 [node name="Checkpoints" type="Node3D" parent="."]
 unique_name_in_owner = true

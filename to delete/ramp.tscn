@@ -4,18 +4,17 @@
 
 [sub_resource type="PrismMesh" id="PrismMesh_c73o1"]
 
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_ytgc7"]
-custom_solver_bias = 0.1
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_c73o1"]
 data = PackedVector3Array(0, 0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, 0, 0.5, -0.5, -0.5, -0.5, -0.5, 0.5, -0.5, -0.5, 0, 0.5, 0.5, 0, 0.5, -0.5, 0.5, -0.5, 0.5, 0, 0.5, -0.5, 0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0, 0.5, -0.5, 0, 0.5, 0.5, -0.5, -0.5, -0.5, 0, 0.5, 0.5, -0.5, -0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5, 0.5, 0.5, -0.5, 0.5, -0.5, -0.5, -0.5, 0.5, -0.5, 0.5, 0.5, -0.5, -0.5, -0.5, -0.5, -0.5)
 
 [node name="Ramp" type="StaticBody3D"]
-transform = Transform3D(-1.18784946e-07, 3.4367704, 0, -2.7174828, -1.50226e-07, 0, 0, 0, 1.8880184, 0, 0, 0)
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
 physics_material_override = SubResource("PhysicsMaterial_c73o1")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.9999999, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 0, 0)
+transform = Transform3D(1.5, 0, 0, 0, 1.7, 0, 0, 0, 1.5, 0, 0, 0)
 mesh = SubResource("PrismMesh_c73o1")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(0.9999999, 0, 0, 0, 0.99999994, 0, 0, 0, 1, 0, 0, 0)
-shape = SubResource("ConcavePolygonShape3D_ytgc7")
+[node name="Collider" type="CollisionShape3D" parent="."]
+transform = Transform3D(1.5, 0, 0, 0, 1.7, 0, 0, 0, 1.5, 0, 0, 0)
+shape = SubResource("ConcavePolygonShape3D_c73o1")

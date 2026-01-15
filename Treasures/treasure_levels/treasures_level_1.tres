@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="TreasureTable" load_steps=5 format=3 uid="uid://ifpn842yae75"]
+
+[ext_resource type="Script" uid="uid://c8lnii2cc46g6" path="res://Scripts/treasures/treasure_table.gd" id="1_6wlix"]
+[ext_resource type="PackedScene" uid="uid://fja02r6tv40w" path="res://Treasures/treasure_generic.tscn" id="2_caa7a"]
+[ext_resource type="PackedScene" uid="uid://b7ptdlx6ef73l" path="res://Treasures/treasure_fish.tscn" id="3_0cvos"]
+[ext_resource type="PackedScene" uid="uid://d2coigwpui6n1" path="res://Treasures/treasure_donut.tscn" id="4_gwpew"]
+
+[resource]
+script = ExtResource("1_6wlix")
+treasures = Array[PackedScene]([ExtResource("2_caa7a"), ExtResource("3_0cvos"), ExtResource("4_gwpew")])
+metadata/_custom_type_script = "uid://c8lnii2cc46g6"

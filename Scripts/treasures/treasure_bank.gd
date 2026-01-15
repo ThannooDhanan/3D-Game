@@ -1,7 +1,6 @@
 extends Node3D
 
-@onready var treasureBank := [
-	["res://treasure.tscn"], #level1 treasure
-	[], #level2 treasure
-	[] #level3 treasure
-	]
+const TREASURE_BANK := [
+	#level1 treasures
+	preload("res://Treasures/treasure_levels/treasures_level_1.tres")
+]
