@@ -3,49 +3,58 @@ extends Node3D
 @onready var dig_spots := %Checkpoints
 @onready var home := %Home
 @onready var treasureBank := %"Treasure Bank"
+@onready var burriedTreasure := preload("res://Treasures/treasure.tscn")
 
-var activeWaypoint: DigSpot
+var activeDigSpot: DigSpot
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	var randomPoint = randi_range(1, len(dig_spots.get_children())) - 1
-	activeWaypoint = dig_spots.get_child(randomPoint)
+	var randomPoint = randi_range(0, len(dig_spots.get_children()) -1)
+	activeDigSpot = dig_spots.get_child(randomPoint)
 	for waypoint in dig_spots.get_children():
 		waypoint.playerEnteredSite.connect(playerInPoint)
 		waypoint.playerLeftSite.connect(playerLeftPoint)
-		if waypoint != activeWaypoint:
+		if waypoint != activeDigSpot:
 			waypoint.active = false
 			waypoint.visible = false
 	setUpActiveDigSpot()
-	
-	
 
-func playerInPoint(digSite: Area3D, player: Node3D) -> void:
-	if player is Player and digSite.active:
+func playerInPoint(digSite: Area3D, player: Player) -> void:
+	if digSite.active:
 		player.canDig = true
-		player.finishedDigging.connect(goHome)
-		player.finishedDigging.connect(releaseTreasure)
-		#wait for the player to finish digging then release treasure
+		if !player.finishedDigging.is_connected(onPlayerFinishedDigging):
+			player.finishedDigging.connect(onPlayerFinishedDigging.bind(digSite))
 		#make home the new active point
-		print("Player " + player.name + " in " + digSite.name)
 
-func playerLeftPoint(player: Node3D):
+func playerLeftPoint(player: Player):
 	if player is Player:
 		player.canDig = false
-
-func goHome(_player: Player):
-	activeWaypoint.active = false
-	activeWaypoint.visible = false
+		if player.finishedDigging.is_connected(onPlayerFinishedDigging):
+			player.finishedDigging.disconnect(onPlayerFinishedDigging)
 
 func setUpActiveDigSpot():
-	var table: TreasureTable = treasureBank.TREASURE_BANK[activeWaypoint.level - 1]
+	var table: TreasureTable = treasureBank.TREASURE_BANK[activeDigSpot.level - 1]
 	var treasures = table.treasures
 	var randomTreasure = treasures[randi_range(0, len(treasures) -1)]
-	activeWaypoint.active = true
-	activeWaypoint.pointerArrow.visible = true
-	activeWaypoint.burriedTreasure = randomTreasure
+	activeDigSpot.active = true
+	activeDigSpot.pointerArrow.visible = true
+	activeDigSpot.burriedTreasure = randomTreasure
 
-func releaseTreasure(_player: Player):
-	var treasureInstance = activeWaypoint.burriedTreasure.instantiate()
+func onPlayerFinishedDigging(player: Player, digSite: DigSpot):
+	print(player.name + " has unearthed treasure!")
+	#Instantiate treasure scene
+	var treasureInstance = burriedTreasure.instantiate()
 	get_tree().current_scene.add_child(treasureInstance)
-	treasureInstance.global_position = activeWaypoint.global_position + Vector3(0,1,0)
+	
+	#Assign the treasure's mesh
+	treasureInstance.apply_data(digSite.burriedTreasure)
+	
+	#Spawn treasure infront of player
+	treasureInstance.global_position = player.treasureSpawn.global_position
+	
+	goHome()
+
+func goHome():
+	activeDigSpot.active = false
+	activeDigSpot.visible = false
+	home.pointerArrow.visible = true

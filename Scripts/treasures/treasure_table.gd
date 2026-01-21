@@ -1,4 +1,4 @@
 extends Resource
 class_name TreasureTable
 
-@export var treasures : Array[PackedScene] = []
+@export var treasures : Array[Collectable] = []

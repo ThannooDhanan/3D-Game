@@ -21,11 +21,14 @@ enum player_state {
 @export var rotationSpeed := 10.0
 @export var jumpStrength := 10.0
 @export var coyote_time := .1
+@export var buffer_timer := .075
 @onready var health := %HealthComponent
 var treasureInHand : Treasure
+var jumpBuffer := false
 
 """Miscelaneous player status"""
 @onready var player_skin := %"SnowmanSkin"
+@onready var treasureSpawn := %Marker3D
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var was_on_floor := true
 var camera_input_direction := Vector2.ZERO
@@ -63,7 +66,6 @@ func _physics_process(delta):
 	elif current_state == player_state.DIGGING:
 		resetAfterDigging(true)
 
-
 func rotateCamera(delta: float):
 	"""Camera rotation via mouse motion"""
 	cameraPivot.rotation.x += camera_input_direction.y * delta
@@ -92,24 +94,33 @@ func movePlayer(delta: float):
 		velocity.y = verticalVelocity - (gravity * delta)
 		velocity.y = clamp(velocity.y, -300, 10)
 	else:
+		velocity.y = 0.0
 		was_on_floor = true
+		if jumpBuffer:
+			jump()
 	
-	jump()
+	jump_action()
 	face_player(move_direction, delta)
 
-func jump():
+func jump_action():
 	"""Jumps"""
 	var is_jumping := Input.is_action_just_pressed("jump")
-	if is_jumping and ( was_on_floor):
-		if treasureInHand:
-			print("I have: " + treasureInHand.name)
+	if is_jumping:
+		if was_on_floor:
+			jump()
 		else:
-			print("I have no treasure :(")
-		velocity.y += jumpStrength
-		was_on_floor = false
+			jumpBuffer = true
+			get_tree().create_timer(buffer_timer).timeout.connect(jump_buffer_timeout)
 	move_and_slide()
 	
 func coyote_timeout():
+	was_on_floor = false
+
+func jump_buffer_timeout():
+	jumpBuffer = false
+
+func jump():
+	velocity.y += jumpStrength
 	was_on_floor = false
 
 func face_player(move_direction: Vector3, delta: float):
@@ -117,21 +128,21 @@ func face_player(move_direction: Vector3, delta: float):
 	if move_direction.length() > 0.2:
 		last_mov_direction = move_direction
 	var target_angle :=  Vector3.FORWARD.signed_angle_to(last_mov_direction, Vector3.UP)
-	player_skin.global_rotation.y = lerp_angle(player_skin.rotation.y, target_angle, rotationSpeed * delta)
+	player_skin.global_rotation.y = lerp_angle(player_skin.rotation.y, 
+											target_angle, rotationSpeed * delta)
 
 func holdDigAction(delta: float):
 	if Input.is_action_pressed("Dig"):
 		#remove any velocity in the player when digging
 		velocity = Vector3.ZERO
 		digTime += delta
-
 		if digTime >= MAX_DIG_TIME:
-			print("finished Digging!")
 			resetAfterDigging(false)
 			emit_signal("finishedDigging", self)
-	elif digTime > 0:
-		print("Digging canceled, progress lost")
-		resetAfterDigging(true)
+	"""This bit might be redundant, but don't clear out yet."""
+	#elif digTime > 0:
+	#	print("Digging canceled, progress lost")
+	#	resetAfterDigging(true)
 	
 func resetAfterDigging(canceled: bool):
 	current_state = player_state.IDLE

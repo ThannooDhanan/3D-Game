@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Collectable" load_steps=4 format=3 uid="uid://b1t8v8ipmjoav"]
+
+[ext_resource type="Material" uid="uid://ce8tijgnp7uge" path="res://Materials/Color Materials/treasure.tres" id="1_gsn85"]
+[ext_resource type="Script" uid="uid://db2fltj2rqj48" path="res://resources/Collectable.gd" id="2_udyjm"]
+
+[sub_resource type="TorusMesh" id="TorusMesh_gsn85"]
+material = ExtResource("1_gsn85")
+inner_radius = 0.2
+outer_radius = 0.8
+
+[resource]
+script = ExtResource("2_udyjm")
+display_name = "DO-NUT"
+display_mesh = SubResource("TorusMesh_gsn85")
+metadata/_custom_type_script = "uid://db2fltj2rqj48"

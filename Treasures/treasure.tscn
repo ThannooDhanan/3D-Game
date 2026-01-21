@@ -1,12 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://d2coigwpui6n1"]
+[gd_scene load_steps=5 format=3 uid="uid://fja02r6tv40w"]
 
-[ext_resource type="PhysicsMaterial" uid="uid://bhsh6ehsici0y" path="res://Materials/Physics/Frictionless.tres" id="1_56bag"]
-[ext_resource type="Script" uid="uid://nitlwgig5ort" path="res://Scripts/treasures/treasure.gd" id="2_8nggf"]
-[ext_resource type="Material" uid="uid://ce8tijgnp7uge" path="res://Materials/Color Materials/treasure.tres" id="3_140gl"]
-
-[sub_resource type="TorusMesh" id="TorusMesh_56bag"]
-inner_radius = 0.33
-outer_radius = 1.1
+[ext_resource type="PhysicsMaterial" uid="uid://bhsh6ehsici0y" path="res://Materials/Physics/Frictionless.tres" id="1_hhdy1"]
+[ext_resource type="Script" uid="uid://nitlwgig5ort" path="res://Scripts/treasures/treasure.gd" id="2_lxfyp"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hhdy1"]
 height = 1.3
@@ -19,25 +14,22 @@ collision_mask = 3
 axis_lock_angular_x = true
 axis_lock_angular_y = true
 axis_lock_angular_z = true
-physics_material_override = ExtResource("1_56bag")
+physics_material_override = ExtResource("1_hhdy1")
 contact_monitor = true
 max_contacts_reported = 2
-script = ExtResource("2_8nggf")
-displayName = "DO-NUT"
-value = 10
+script = ExtResource("2_lxfyp")
 
 [node name="Skin" type="MeshInstance3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(0.49846926, -0.23244005, 0, 0.23244005, 0.49846926, 0, 0, 0, 0.55, 0, 0, 0)
-mesh = SubResource("TorusMesh_56bag")
-surface_material_override/0 = ExtResource("3_140gl")
+transform = Transform3D(0.7, 0, 0, 0, 0.49497473, -0.49497473, 0, 0.49497473, 0.49497473, 0, 0.7, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9802322e-08, -0.049572825, 2.9802322e-08)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9802322e-08, 0.65042716, 2.9802322e-08)
 shape = SubResource("CapsuleShape3D_hhdy1")
 
 [node name="ContactBox" type="Area3D" parent="."]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ContactBox"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.9604645e-08, 5.9604645e-08, 5.9604645e-08)

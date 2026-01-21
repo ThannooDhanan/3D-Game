@@ -16,12 +16,17 @@ unique_name_in_owner = true
 
 [node name="PointOfInterest" parent="Checkpoints" instance=ExtResource("2_bmrny")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 0)
+level = 1
 
 [node name="PointOfInterest2" parent="Checkpoints" instance=ExtResource("2_bmrny")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, -12)
+level = 1
 
 [node name="PointOfInterest3" parent="Checkpoints" instance=ExtResource("2_bmrny")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 12)
+level = 1
 
 [node name="Home" parent="." instance=ExtResource("3_bmrny")]
 unique_name_in_owner = true
+
+[editable path="Checkpoints/PointOfInterest"]

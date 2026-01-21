@@ -9,10 +9,12 @@ class_name Treasure
 var velocity := Vector3.ZERO
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
-@export_category("Treasure properties")
-@export var displayName : String
-@export_range(5,50) var value: int 
 
+var treasure_data : Collectable
+
+func apply_data(p_treasure_data: Collectable):
+	treasure_data = p_treasure_data
+	skin.mesh = treasure_data.display_mesh
 
 func _physics_process(delta: float):
 	#simple rotation for the object
@@ -36,3 +38,4 @@ func _on_body_entered(body: Node) -> void:
 	#make the treasue slide off any surface it's resting on
 	else:
 		self.physics_material_override.friction = 0.25
+	#make the treasure slide off ramps and such.

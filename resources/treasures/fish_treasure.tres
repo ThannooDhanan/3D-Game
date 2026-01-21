@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Collectable" load_steps=4 format=3 uid="uid://d36cbwl2cxgl2"]
+
+[ext_resource type="Script" uid="uid://db2fltj2rqj48" path="res://resources/Collectable.gd" id="1_1bece"]
+[ext_resource type="Material" uid="uid://ce8tijgnp7uge" path="res://Materials/Color Materials/treasure.tres" id="1_57hpq"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_1bece"]
+material = ExtResource("1_57hpq")
+
+[resource]
+script = ExtResource("1_1bece")
+display_name = "Fish of Life"
+value = 12
+display_mesh = SubResource("CapsuleMesh_1bece")
+metadata/_custom_type_script = "uid://db2fltj2rqj48"
