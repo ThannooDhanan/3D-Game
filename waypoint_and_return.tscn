@@ -1,12 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://dw4agfysx3wke"]
+[gd_scene load_steps=6 format=3 uid="uid://dw4agfysx3wke"]
 
 [ext_resource type="Script" uid="uid://bvtcgisgb2rpi" path="res://Scripts/waypoint_and_home.gd" id="1_w1vx1"]
 [ext_resource type="PackedScene" uid="uid://l4412yq7568" path="res://point_of_interest.tscn" id="2_bmrny"]
+[ext_resource type="PackedScene" uid="uid://fja02r6tv40w" path="res://Treasures/treasure.tscn" id="2_tdds4"]
 [ext_resource type="PackedScene" uid="uid://cwat0tklgfm1g" path="res://Treasures/treasure_bank.tscn" id="2_w1vx1"]
 [ext_resource type="PackedScene" uid="uid://b3uo6entoqbxq" path="res://home.tscn" id="3_bmrny"]
 
 [node name="WaypointAndReturn" type="Node3D"]
 script = ExtResource("1_w1vx1")
+burriedTreasure = ExtResource("2_tdds4")
 
 [node name="Treasure Bank" parent="." instance=ExtResource("2_w1vx1")]
 unique_name_in_owner = true
@@ -16,15 +18,12 @@ unique_name_in_owner = true
 
 [node name="PointOfInterest" parent="Checkpoints" instance=ExtResource("2_bmrny")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 0)
-level = 1
 
 [node name="PointOfInterest2" parent="Checkpoints" instance=ExtResource("2_bmrny")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, -12)
-level = 1
 
 [node name="PointOfInterest3" parent="Checkpoints" instance=ExtResource("2_bmrny")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 12)
-level = 1
 
 [node name="Home" parent="." instance=ExtResource("3_bmrny")]
 unique_name_in_owner = true

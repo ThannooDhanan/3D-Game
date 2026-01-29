@@ -2,12 +2,13 @@ extends Area3D
 class_name PointOfInterest
 
 @onready var pointerArrow := %Arrow
-var active := false
+@export var active := false
 
 signal playerEnteredSite(digSite: Area3D, player: Node3D)
 signal playerLeftSite(player: Node3D)
 
 func _on_body_entered(body: Node3D) -> void:
+	print("Entered : " + name + " by " + body.name)
 	if body is Player:
 		emit_signal("playerEnteredSite", self, body)
 

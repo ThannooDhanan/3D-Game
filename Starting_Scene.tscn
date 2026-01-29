@@ -114,3 +114,4 @@ transform = Transform3D(-1.18784946e-07, 3.4367704, 0, -2.7174828, -1.50226e-07,
 
 [editable path="Snowman"]
 [editable path="WaypointAndReturn"]
+[editable path="WaypointAndReturn/Checkpoints/PointOfInterest"]

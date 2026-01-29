@@ -4,9 +4,9 @@ class_name Player
 enum player_state {
 	IDLE,
 	MOVING,
-	SPRINTING,
 	DIGGING,
-	JUMPING
+	JUMPING,
+	CASHING
 }
 
 @export_group("Camera")
@@ -23,7 +23,7 @@ enum player_state {
 @export var coyote_time := .1
 @export var buffer_timer := .075
 @onready var health := %HealthComponent
-var treasureInHand : Treasure
+var treasureInHand : Collectable
 var jumpBuffer := false
 
 """Miscelaneous player status"""
@@ -42,13 +42,19 @@ var digTime := 0.0
 const MAX_DIG_TIME := 3.0
 signal finishedDigging(player: Player)
 
+"""Cashout Parameters"""
+var canCashout := false
+signal relinquishTreasure(player: Player)
+
 func _input(event):
+	"""Used for clicking in and out of the game"""
 	if (event.is_action_pressed("left_click")):
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	if (event.is_action_pressed("ui_cancel")):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 func _unhandled_input(event):
+	"""Prepares a vector to rotate the camera"""
 	var is_camera_motion := (
 		event is InputEventMouseMotion and 
 		Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED)
@@ -56,13 +62,20 @@ func _unhandled_input(event):
 		camera_input_direction = event.screen_relative * mouseSensitivity
 
 func _physics_process(delta):
+	"""Used as a states manager
+	camera should always rotate regardles of player state"""
 	rotateCamera(delta)
-	if current_state != player_state.DIGGING:
+	if current_state in [player_state.IDLE, player_state.MOVING]:
 		movePlayer(delta)
 	
-	if canDig and Input.is_action_pressed("Dig"):
+	if canDig and Input.is_action_pressed("Interact"):
 		current_state = player_state.DIGGING
 		holdDigAction(delta)
+	elif canCashout and Input.is_action_pressed("Interact"):
+		"""When player can Cashout their treasure. The Interact button(X) 
+		must be pressed to do so."""
+		current_state = player_state.CASHING
+		cashoutTreasure()
 	elif current_state == player_state.DIGGING:
 		resetAfterDigging(true)
 
@@ -85,6 +98,7 @@ func movePlayer(delta: float):
 	var move_direction : Vector3 = forward * direction.y + right * direction.x
 	
 	"""Moves player"""
+	current_state = player_state.MOVING
 	move_direction.y = 0.0
 	velocity = velocity.move_toward(move_direction.normalized() * speed, acceleration * delta)
 	if !is_on_floor():
@@ -132,7 +146,8 @@ func face_player(move_direction: Vector3, delta: float):
 											target_angle, rotationSpeed * delta)
 
 func holdDigAction(delta: float):
-	if Input.is_action_pressed("Dig"):
+	"""Player must hold the interact(X) button for ~3 sec to dig"""
+	if Input.is_action_pressed("Interact"):
 		#remove any velocity in the player when digging
 		velocity = Vector3.ZERO
 		digTime += delta
@@ -148,3 +163,11 @@ func resetAfterDigging(canceled: bool):
 	current_state = player_state.IDLE
 	canDig = canceled
 	digTime = 0.0
+
+func cashoutTreasure():
+	if treasureInHand == null:
+		return
+	print("cashing out")
+	emit_signal("relinquishTreasure", self)
+	treasureInHand = null
+	current_state = player_state.IDLE

@@ -35,5 +35,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.9604645e-08, 5.9604645e-08, 5.9604645e-08)
 shape = SubResource("BoxShape3D_h85lg")
 
+[node name="RayCast3D" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.03352219, 0)
+target_position = Vector3(0, -0.5, 0)
+collision_mask = 3
+collide_with_areas = true
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_entered" from="ContactBox" to="." method="_on_contact_box_body_entered"]

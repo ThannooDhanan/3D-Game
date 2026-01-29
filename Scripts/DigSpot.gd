@@ -10,7 +10,3 @@ func _ready() -> void:
 		pointerArrow.visible = false 
 	else:
 		pass
-
-func _on_body_entered(body: Node3D):
-	if body is Player and active:
-		emit_signal("playerEnteredSite", self, body)
