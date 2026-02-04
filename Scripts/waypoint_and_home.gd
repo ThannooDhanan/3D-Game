@@ -4,13 +4,20 @@ extends Node3D
 @onready var home := %Home
 @onready var treasureBank := %"Treasure Bank"
 @export var burriedTreasure : PackedScene #= preload("res://Treasures/treasure.tscn")
+@export var treasureUneasePenalty := 3
 
 var activeDigSpot: DigSpot
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	setUpWorldTrapTimer()
 	setUpPoints()
 	setUpHome()
+
+func setUpWorldTrapTimer():
+	TrapManagement.hazard_and_unease_timer.autostart = true
+	TrapManagement.set_starting_trap_properties()
+	TrapManagement.hazard_and_unease_timer.start()
 
 func setUpPoints():
 	var randomPoint = randi_range(0, len(dig_spots.get_children()) -1)
@@ -32,7 +39,6 @@ func playerInPoint(site: Area3D, player: Player) -> void:
 	if site is Home and player.treasureInHand != null:
 		player.canCashout = true
 		if !player.relinquishTreasure.is_connected(cashoutTreasure):
-			print("connected waiting for player to press x")
 			player.relinquishTreasure.connect(cashoutTreasure)
 
 func playerLeftPoint(player: Player):
@@ -64,6 +70,7 @@ func onPlayerFinishedDigging(player: Player):
 	#Instantiate treasure scene
 	if burriedTreasure != null:
 		var treasureInstance = burriedTreasure.instantiate()
+		TrapManagement.unease += treasureUneasePenalty
 		get_tree().current_scene.add_child(treasureInstance)
 	
 		#Assign the treasure's mesh

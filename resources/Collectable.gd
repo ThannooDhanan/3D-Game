@@ -2,5 +2,6 @@ extends Resource
 class_name Collectable
 
 @export var display_name : String
+@export var flavor_text : String
 @export_range(5,50) var worth : int
 @export var display_mesh : Mesh

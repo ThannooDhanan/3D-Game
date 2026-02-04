@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://biec4sef70he2"]
+
+[ext_resource type="Script" uid="uid://dboec542frfr7" path="res://Scripts/unease_trigger.gd" id="1_duyng"]
+[ext_resource type="Material" uid="uid://chotobv2bedym" path="res://Materials/Color Materials/Unease_Material.tres" id="2_662xi"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_p2tql"]
+size = Vector3(3, 0.2, 3)
+
+[sub_resource type="BoxMesh" id="BoxMesh_p2tql"]
+material = ExtResource("2_662xi")
+
+[node name="Area3D" type="Area3D"]
+script = ExtResource("1_duyng")
+reset_timer = 5.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.099999994, 0)
+shape = SubResource("BoxShape3D_p2tql")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(3, 0, 0, 0, 0.2, 0, 0, 0, 3, 0, 0.1, 0)
+mesh = SubResource("BoxMesh_p2tql")
+
+[node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 5.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

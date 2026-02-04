@@ -2,10 +2,10 @@
 
 [ext_resource type="Material" uid="uid://dy2vo6xbu52ky" path="res://Materials/Color Materials/ground.tres" id="1_4e0oo"]
 [ext_resource type="PackedScene" uid="uid://d2w684tflowaa" path="res://snowman.tscn" id="1_g45l7"]
-[ext_resource type="Script" uid="uid://b5yltvfypkusb" path="res://Scripts/Level/TrapManagement.gd" id="1_y1wb8"]
 [ext_resource type="ArrayMesh" uid="uid://doapevvd5fwf2" path="res://Objects/carrot.obj" id="3_b4p0v"]
 [ext_resource type="Material" uid="uid://ckm4aknro6eh1" path="res://Materials/Color Materials/carrot.tres" id="4_t3ix3"]
 [ext_resource type="Material" uid="uid://cp8ddjlkjemya" path="res://Materials/Color Materials/Snowman_arm.tres" id="5_y1wb8"]
+[ext_resource type="PackedScene" uid="uid://biec4sef70he2" path="res://unease_trigger.tscn" id="6_l2gww"]
 [ext_resource type="PackedScene" uid="uid://dw4agfysx3wke" path="res://waypoint_and_return.tscn" id="6_t3ix3"]
 [ext_resource type="PackedScene" uid="uid://7t6oubquod5h" path="res://to delete/ramp.tscn" id="9_na0wc"]
 
@@ -28,7 +28,6 @@ data = PackedVector3Array(0, 2, 0, 0, 0, -0.35, 0.0683, 0, -0.34329998, 0, 2, 0,
 [sub_resource type="BoxShape3D" id="BoxShape3D_b4p0v"]
 
 [node name="Main" type="Node3D"]
-script = ExtResource("1_y1wb8")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(100, 0, 0, 0, 4.37114e-06, 100, 0, -100, 4.37114e-06, 0, -0.0245649, 0)
@@ -105,6 +104,9 @@ metadata/_edit_group_ = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="environ/pine4/StaticBody3D"]
 shape = SubResource("BoxShape3D_b4p0v")
+
+[node name="Area3D" parent="environ" instance=ExtResource("6_l2gww")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.011281, 0, -5.5967946)
 
 [node name="WaypointAndReturn" parent="." instance=ExtResource("6_t3ix3")]
 transform = Transform3D(-0.041718695, 0, 0.9991294, 0, 1, 0, -0.9991294, 0, -0.041718695, -2.5750403, 0, -0.45673704)

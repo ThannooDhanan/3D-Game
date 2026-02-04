@@ -11,6 +11,7 @@ outer_radius = 0.8
 [resource]
 script = ExtResource("2_udyjm")
 display_name = "DO-NUT"
+flavor_text = "Donut, forever. Donut everywhere."
 worth = 7
 display_mesh = SubResource("TorusMesh_gsn85")
 metadata/_custom_type_script = "uid://db2fltj2rqj48"
