@@ -6,7 +6,8 @@ enum player_state {
 	MOVING,
 	DIGGING,
 	JUMPING,
-	CASHING
+	CASHING,
+	DEAD
 }
 
 @export_group("Camera")
@@ -171,3 +172,7 @@ func cashoutTreasure():
 	emit_signal("relinquishTreasure", self)
 	treasureInHand = null
 	current_state = player_state.IDLE
+
+
+func _on_health_component_destroyed():
+	current_state = player_state.DEAD

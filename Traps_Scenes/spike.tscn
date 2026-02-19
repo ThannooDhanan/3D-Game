@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cetu6pw0q3dx0"]
+
+[ext_resource type="ArrayMesh" uid="uid://doapevvd5fwf2" path="res://Objects/carrot.obj" id="1_plk82"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8fhau"]
+albedo_color = Color(0.58, 0.58, 0.58, 1)
+metallic = 1.0
+roughness = 0.5
+
+[node name="Spike1" type="MeshInstance3D"]
+transform = Transform3D(0.11, 0, 0, 0, 0.11, 0, 0, 0, 0.11, 0, 0, 0)
+mesh = ExtResource("1_plk82")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_8fhau")

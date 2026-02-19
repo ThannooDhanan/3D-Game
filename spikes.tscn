@@ -1,0 +1,169 @@
+[gd_scene load_steps=5 format=3 uid="uid://c4624ahk56j"]
+
+[ext_resource type="Script" uid="uid://cq8cwuktn6306" path="res://Scripts/Traps/damaging_traps.gd" id="1_s0g1x"]
+[ext_resource type="PackedScene" uid="uid://cetu6pw0q3dx0" path="res://Traps_Scenes/spike.tscn" id="2_8fhau"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nrdsm"]
+size = Vector3(1, 0.25, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_nrdsm"]
+
+[node name="Spike_Trap" type="Node3D" node_paths=PackedStringArray("end_point", "weapon", "hit_box")]
+script = ExtResource("1_s0g1x")
+damage = 1
+hazard_requirement = 5
+offset = Vector3(0, -0.25, -0.04)
+tween_trans = 5
+tween_ease = 1
+tween_time = 0.35
+end_point = NodePath("Spikes End point")
+weapon = NodePath("Spikes")
+hit_box = NodePath("Area3D")
+
+[node name="Area3D" type="Area3D" parent="."]
+unique_name_in_owner = true
+collision_layer = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.125, 0)
+shape = SubResource("BoxShape3D_nrdsm")
+
+[node name="Spikes End point" type="Marker3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.04)
+
+[node name="Spikes" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.04)
+
+[node name="row1" type="Node3D" parent="Spikes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.24957745, 0, -0.24978097)
+
+[node name="Spike1" parent="Spikes/row1" instance=ExtResource("2_8fhau")]
+transform = Transform3D(0.11, 0, 0, 0, 0.11, 0, 0, 0, 0.11, -0.167, 0, -0.167)
+
+[node name="Spike7" parent="Spikes/row1" instance=ExtResource("2_8fhau")]
+transform = Transform3D(0.11, 0, 0, 0, 0.11, 0, 0, 0, 0.11, -0.167, 0, 0)
+
+[node name="Spike10" parent="Spikes/row1" instance=ExtResource("2_8fhau")]
+transform = Transform3D(0.11, 0, 0, 0, 0.11, 0, 0, 0, 0.11, -0.167, 0, 0.668)
+
+[node name="Spike11" parent="Spikes/row1" instance=ExtResource("2_8fhau")]
+transform = Transform3D(0.11, 0, 0, 0, 0.11, 0, 0, 0, 0.11, -0.167, 0, 0.5)
+
+[node name="Spike8" parent="Spikes/row1" instance=ExtResource("2_8fhau")]
+transform = Transform3D(0.11, 0, 0, 0, 0.11, 0, 0, 0, 0.11, -0.167, 0, 0.167)
+
+[node name="Spike9" parent="Spikes/row1" instance=ExtResource("2_8fhau")]
+transform = Transform3D(0.11, 0, 0, 0, 0.11, 0, 0, 0, 0.11, -0.167, 0, 0.333)
+
+[node name="row2" type="Node3D" parent="Spikes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.24957745, 0, -0.24978098)
+
+[node name="Spike14" parent="Spikes/row2" instance=ExtResource("2_8fhau")]
+transform = Transform3D(0.11, 0, 0, 0, 0.11, 0, 0, 0, 0.11, 0, 0, -0.085)
+
+[node name="Spike15" parent="Spikes/row2" instance=ExtResource("2_8fhau")]
+transform = Transform3D(0.11, 0, 0, 0, 0.11, 0, 0, 0, 0.11, 0, 0, 0.25)
+
+[node name="Spike16" parent="Spikes/row2" instance=ExtResource("2_8fhau")]
+transform = Transform3D(0.11, 0, 0, 0, 0.11, 0, 0, 0, 0.11, 0, 0, 0.081999995)
+
+[node name="Spike17" parent="Spikes/row2" instance=ExtResource("2_8fhau")]
+transform = Transform3D(0.11, 0, 0, 0, 0.11, 0, 0, 0, 0.11, 0, 0, 0.415)
+
+[node name="Spike18" parent="Spikes/row2" instance=ExtResource("2_8fhau")]
+transform = Transform3D(0.11, 0, 0, 0, 0.11, 0, 0, 0, 0.11, 0, 0, 0.74899995)
+
+[node name="Spike19" parent="Spikes/row2" instance=ExtResource("2_8fhau")]
+transform = Transform3D(0.11, 0, 0, 0, 0.11, 0, 0, 0, 0.11, 0, 0, 0.58199996)
+
+[node name="row3" type="Node3D" parent="Spikes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.24957745, 0, -0.24978097)
+
+[node name="Spike2" parent="Spikes/row3" instance=ExtResource("2_8fhau")]
+transform = Transform3D(0.11, 0, 0, 0, 0.11, 0, 0, 0, 0.11, 0.167, 0, -0.167)
+
+[node name="Spike3" parent="Spikes/row3" instance=ExtResource("2_8fhau")]
+transform = Transform3D(0.11, 0, 0, 0, 0.11, 0, 0, 0, 0.11, 0.167, 0, 0)
+
+[node name="Spike4" parent="Spikes/row3" instance=ExtResource("2_8fhau")]
+transform = Transform3D(0.11, 0, 0, 0, 0.11, 0, 0, 0, 0.11, 0.167, 0, 0.167)
+
+[node name="Spike5" parent="Spikes/row3" instance=ExtResource("2_8fhau")]
+transform = Transform3D(0.11, 0, 0, 0, 0.11, 0, 0, 0, 0.11, 0.167, 0, 0.333)
+
+[node name="Spike12" parent="Spikes/row3" instance=ExtResource("2_8fhau")]
+transform = Transform3D(0.11, 0, 0, 0, 0.11, 0, 0, 0, 0.11, 0.167, 0, 0.5)
+
+[node name="Spike13" parent="Spikes/row3" instance=ExtResource("2_8fhau")]
+transform = Transform3D(0.11, 0, 0, 0, 0.11, 0, 0, 0, 0.11, 0.167, 0, 0.667)
+
+[node name="row4" type="Node3D" parent="Spikes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.08342256, 0, -0.24978097)
+
+[node name="Spike1" parent="Spikes/row4" instance=ExtResource("2_8fhau")]
+transform = Transform3D(0.11, 0, 0, 0, 0.11, 0, 0, 0, 0.11, -0.167, 0, -0.167)
+
+[node name="Spike7" parent="Spikes/row4" instance=ExtResource("2_8fhau")]
+transform = Transform3D(0.11, 0, 0, 0, 0.11, 0, 0, 0, 0.11, -0.167, 0, 0)
+
+[node name="Spike10" parent="Spikes/row4" instance=ExtResource("2_8fhau")]
+transform = Transform3D(0.11, 0, 0, 0, 0.11, 0, 0, 0, 0.11, -0.167, 0, 0.668)
+
+[node name="Spike11" parent="Spikes/row4" instance=ExtResource("2_8fhau")]
+transform = Transform3D(0.11, 0, 0, 0, 0.11, 0, 0, 0, 0.11, -0.167, 0, 0.5)
+
+[node name="Spike8" parent="Spikes/row4" instance=ExtResource("2_8fhau")]
+transform = Transform3D(0.11, 0, 0, 0, 0.11, 0, 0, 0, 0.11, -0.167, 0, 0.167)
+
+[node name="Spike9" parent="Spikes/row4" instance=ExtResource("2_8fhau")]
+transform = Transform3D(0.11, 0, 0, 0, 0.11, 0, 0, 0, 0.11, -0.167, 0, 0.333)
+
+[node name="row5" type="Node3D" parent="Spikes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.08342256, 0, -0.24978097)
+
+[node name="Spike14" parent="Spikes/row5" instance=ExtResource("2_8fhau")]
+transform = Transform3D(0.11, 0, 0, 0, 0.11, 0, 0, 0, 0.11, 0, 0, -0.085)
+
+[node name="Spike15" parent="Spikes/row5" instance=ExtResource("2_8fhau")]
+transform = Transform3D(0.11, 0, 0, 0, 0.11, 0, 0, 0, 0.11, 0, 0, 0.25)
+
+[node name="Spike16" parent="Spikes/row5" instance=ExtResource("2_8fhau")]
+transform = Transform3D(0.11, 0, 0, 0, 0.11, 0, 0, 0, 0.11, 0, 0, 0.081999995)
+
+[node name="Spike17" parent="Spikes/row5" instance=ExtResource("2_8fhau")]
+transform = Transform3D(0.11, 0, 0, 0, 0.11, 0, 0, 0, 0.11, 0, 0, 0.415)
+
+[node name="Spike18" parent="Spikes/row5" instance=ExtResource("2_8fhau")]
+transform = Transform3D(0.11, 0, 0, 0, 0.11, 0, 0, 0, 0.11, 0, 0, 0.74899995)
+
+[node name="Spike19" parent="Spikes/row5" instance=ExtResource("2_8fhau")]
+transform = Transform3D(0.11, 0, 0, 0, 0.11, 0, 0, 0, 0.11, 0, 0, 0.58199996)
+
+[node name="row6" type="Node3D" parent="Spikes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.417, 0, -0.25)
+
+[node name="Spike14" parent="Spikes/row6" instance=ExtResource("2_8fhau")]
+transform = Transform3D(0.11, 0, 0, 0, 0.11, 0, 0, 0, 0.11, 0, 0, -0.085)
+
+[node name="Spike15" parent="Spikes/row6" instance=ExtResource("2_8fhau")]
+transform = Transform3D(0.11, 0, 0, 0, 0.11, 0, 0, 0, 0.11, 0, 0, 0.25)
+
+[node name="Spike16" parent="Spikes/row6" instance=ExtResource("2_8fhau")]
+transform = Transform3D(0.11, 0, 0, 0, 0.11, 0, 0, 0, 0.11, 0, 0, 0.081999995)
+
+[node name="Spike17" parent="Spikes/row6" instance=ExtResource("2_8fhau")]
+transform = Transform3D(0.11, 0, 0, 0, 0.11, 0, 0, 0, 0.11, 0, 0, 0.415)
+
+[node name="Spike18" parent="Spikes/row6" instance=ExtResource("2_8fhau")]
+transform = Transform3D(0.11, 0, 0, 0, 0.11, 0, 0, 0, 0.11, 0, 0, 0.74899995)
+
+[node name="Spike19" parent="Spikes/row6" instance=ExtResource("2_8fhau")]
+transform = Transform3D(0.11, 0, 0, 0, 0.11, 0, 0, 0, 0.11, 0, 0, 0.58199996)
+
+[node name="Recepticle" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.9604645e-08, 0.01, -5.9604645e-08)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Recepticle"]
+transform = Transform3D(1, 0, 0, 0, 0.25, 0, 0, 0, 1, 0, -0.125, 0)
+mesh = SubResource("BoxMesh_nrdsm")

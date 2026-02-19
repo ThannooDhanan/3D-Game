@@ -11,7 +11,8 @@ material = ExtResource("2_662xi")
 
 [node name="Area3D" type="Area3D"]
 script = ExtResource("1_duyng")
-reset_timer = 5.0
+min_reset_timer = 5.0
+max_reset_timer = 20.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.099999994, 0)

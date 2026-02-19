@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bgtgpb3jxkm56"]
+[gd_scene load_steps=18 format=3 uid="uid://bgtgpb3jxkm56"]
 
 [ext_resource type="Material" uid="uid://dy2vo6xbu52ky" path="res://Materials/Color Materials/ground.tres" id="1_4e0oo"]
 [ext_resource type="PackedScene" uid="uid://d2w684tflowaa" path="res://snowman.tscn" id="1_g45l7"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://biec4sef70he2" path="res://unease_trigger.tscn" id="6_l2gww"]
 [ext_resource type="PackedScene" uid="uid://dw4agfysx3wke" path="res://waypoint_and_return.tscn" id="6_t3ix3"]
 [ext_resource type="PackedScene" uid="uid://7t6oubquod5h" path="res://to delete/ramp.tscn" id="9_na0wc"]
+[ext_resource type="PackedScene" uid="uid://c4624ahk56j" path="res://spikes.tscn" id="9_v42h3"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_e4ond"]
 
@@ -113,6 +114,9 @@ transform = Transform3D(-0.041718695, 0, 0.9991294, 0, 1, 0, -0.9991294, 0, -0.0
 
 [node name="Ramp" parent="." instance=ExtResource("9_na0wc")]
 transform = Transform3D(-1.18784946e-07, 3.4367704, 0, -2.7174828, -1.50226e-07, 0, 0, 0, 1.8880184, -2.304203, -0.19730997, -5.2471685)
+
+[node name="Spike_Trap" parent="." instance=ExtResource("9_v42h3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4056025, 0, 0.046819687)
 
 [editable path="Snowman"]
 [editable path="WaypointAndReturn"]

@@ -15,9 +15,9 @@ func _ready() -> void:
 	setUpHome()
 
 func setUpWorldTrapTimer():
-	TrapManagement.hazard_and_unease_timer.autostart = true
+	TrapManagement.hazard_timer.autostart = true
 	TrapManagement.set_starting_trap_properties()
-	TrapManagement.hazard_and_unease_timer.start()
+	TrapManagement.start_hazard_timer()
 
 func setUpPoints():
 	var randomPoint = randi_range(0, len(dig_spots.get_children()) -1)
@@ -70,7 +70,7 @@ func onPlayerFinishedDigging(player: Player):
 	#Instantiate treasure scene
 	if burriedTreasure != null:
 		var treasureInstance = burriedTreasure.instantiate()
-		TrapManagement.unease += treasureUneasePenalty
+		TrapManagement.increase_unease_unblocked(treasureUneasePenalty)
 		get_tree().current_scene.add_child(treasureInstance)
 	
 		#Assign the treasure's mesh

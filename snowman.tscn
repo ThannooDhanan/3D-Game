@@ -131,3 +131,5 @@ metadata/_custom_type_script = "uid://bwyr768688hks"
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.7, 0, 0, 0, 0.6, 0, 0, 0, 0.7, 0, 0.655056, 0)
 shape = SubResource("CapsuleShape3D_6q38s")
+
+[connection signal="destroyed" from="HealthComponent" to="." method="_on_health_component_destroyed"]
