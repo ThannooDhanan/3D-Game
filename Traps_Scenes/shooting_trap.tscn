@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://b16dan5ecdvxe"]
+
+[ext_resource type="Script" uid="uid://cq8cwuktn6306" path="res://Scripts/Traps/damaging_traps.gd" id="1_ivnwb"]
+[ext_resource type="PackedScene" uid="uid://d10vpl6wlwk1r" path="res://Traps_Scenes/projectile.tscn" id="2_ucj6b"]
+
+[node name="Shooting Trap" type="Node3D"]
+script = ExtResource("1_ivnwb")
+
+[node name="Ammo" type="Node3D" parent="."]
+
+[node name="Projectile" parent="Ammo" instance=ExtResource("2_ucj6b")]

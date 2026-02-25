@@ -30,7 +30,7 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6q38s"]
 
 [node name="Snowman" type="CharacterBody3D"]
-collision_mask = 3
+collision_mask = 11
 script = ExtResource("1_p2611")
 max_velocity = 5
 

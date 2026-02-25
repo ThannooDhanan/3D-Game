@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dgptk860etw6l"]
+
+[ext_resource type="Script" uid="uid://cq8cwuktn6306" path="res://Scripts/Traps/damaging_traps.gd" id="1_1ptmv"]
+
+[node name="Sine Platform" type="Node3D"]
+script = ExtResource("1_1ptmv")

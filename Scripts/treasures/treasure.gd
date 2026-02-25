@@ -9,7 +9,7 @@ class_name Treasure
 
 var velocity := Vector3.ZERO
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
-
+var tween_time := 3.0
 
 var treasure_data : Collectable
 
@@ -17,9 +17,14 @@ func apply_data(p_treasure_data: Collectable):
 	treasure_data = p_treasure_data
 	skin.mesh = p_treasure_data.display_mesh
 
-func _physics_process(delta: float):
+func _ready():
 	#simple rotation for the object
-	skin.rotate(Vector3.UP, delta)
+	var rotation_tween : Tween = create_tween()
+	rotation_tween.tween_property(skin, "rotation_degrees:y", 360, tween_time).as_relative()
+	rotation_tween.set_loops()
+	
+
+func _physics_process(delta: float):
 	if !floorChecker.is_colliding():
 		velocity.y -= (gravity * delta)
 		velocity.y = clamp(velocity.y, -300, 10)

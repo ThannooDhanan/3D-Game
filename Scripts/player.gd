@@ -173,6 +173,5 @@ func cashoutTreasure():
 	treasureInHand = null
 	current_state = player_state.IDLE
 
-
 func _on_health_component_destroyed():
 	current_state = player_state.DEAD
