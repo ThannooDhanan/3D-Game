@@ -1,4 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://d10vpl6wlwk1r"]
+[gd_scene load_steps=5 format=3 uid="uid://d10vpl6wlwk1r"]
+
+[ext_resource type="Script" uid="uid://blgsd1agr7ahm" path="res://Scripts/Traps/hit_player.gd" id="1_mq4l2"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_ins2i"]
 
@@ -6,7 +8,12 @@
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_mq4l2"]
 
-[node name="Projectile" type="Node3D"]
+[node name="Projectile" type="RigidBody3D"]
+axis_lock_linear_y = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+script = ExtResource("1_mq4l2")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.05, 0, 0, 0, -2.1855694e-08, -0.05, 0, 0.5, -2.1855695e-09, 0, 0, 0)
@@ -21,52 +28,54 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.001, 0, -0.383)
 size = Vector3(0.025, 0.17, 0.2)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Fletch"]
-transform = Transform3D(1, 0, 0, 0, 0.8114312, 0.5844479, 0, -0.5844479, 0.8114312, -0.0029724133, 0.08470329, 0.09940207)
+transform = Transform3D(1, 0, 0, 0, 0.8114312, 0.5844479, 0, -0.5844479, 0.8114312, -0.0029724133, 0.05983893, 0.097035766)
 operation = 2
-size = Vector3(0.044763185, 0.12814942, 0.06800537)
+size = Vector3(0.044763185, 0.09056397, 0.035101317)
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="Fletch"]
-transform = Transform3D(1, 0, 0, 0, 0.8114312, 0.5844479, 0, -0.5844479, 0.8114312, -0.0029724133, 0.051567316, -0.106943905)
+transform = Transform3D(1, 0, 0, 0, 0.8114312, 0.5844479, 0, -0.5844479, 0.8114312, -0.0029724133, 0.037738465, -0.09698343)
 operation = 2
-size = Vector3(0.044763185, 0.11602173, 0.06800537)
+size = Vector3(0.044763185, 0.08193664, 0.06800537)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="Fletch"]
-transform = Transform3D(-1, 7.0937574e-08, 5.109406e-08, -8.742278e-08, -0.8114312, -0.5844479, 0, -0.5844479, 0.8114312, -0.0029724133, -0.07240226, 0.09940207)
+transform = Transform3D(-1, 7.0937574e-08, 5.109406e-08, -8.742278e-08, -0.8114312, -0.5844479, 0, -0.5844479, 0.8114312, -0.0029724143, -0.057212032, 0.094280064)
 operation = 2
-size = Vector3(0.044763185, 0.12814942, 0.06800537)
+size = Vector3(0.044763185, 0.109484866, 0.041937254)
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="Fletch"]
-transform = Transform3D(-1, 7.0937574e-08, 5.109406e-08, -8.742278e-08, -0.8114312, -0.5844479, 0, -0.5844479, 0.8114312, -0.003, -0.052, -0.107)
+transform = Transform3D(-1, 7.0937574e-08, 5.109406e-08, -8.742278e-08, -0.8114312, -0.5844479, 0, -0.5844479, 0.8114312, -0.0030000014, -0.035112932, -0.09483677)
 operation = 2
-size = Vector3(0.044763185, 0.14086303, 0.06800537)
+size = Vector3(0.044763185, 0.09924011, 0.06800537)
 
 [node name="Fletch2" type="CSGBox3D" parent="."]
 transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0.0007019043, -0.010650635, -0.38256836)
 size = Vector3(0.025, 0.17, 0.2)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Fletch2"]
-transform = Transform3D(1, 0, 0, 0, 0.8114312, 0.5844479, 0, -0.5844479, 0.8114312, -0.0029724133, 0.08470329, 0.09940207)
+transform = Transform3D(1, 0, 0, 0, 0.8114312, 0.5844479, 0, -0.5844479, 0.8114312, -0.0029724133, 0.06257878, 0.09551364)
 operation = 2
-size = Vector3(0.044763185, 0.12814942, 0.06800537)
+size = Vector3(0.044763185, 0.096789554, 0.03583374)
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="Fletch2"]
-transform = Transform3D(1, 0, 0, 0, 0.8114312, 0.5844479, 0, -0.5844479, 0.8114312, -0.0029724133, 0.051567316, -0.106943905)
+transform = Transform3D(1, 0, 0, 0, 0.8114312, 0.5844479, 0, -0.5844479, 0.8114312, -0.0029724138, 0.039868075, -0.09851733)
 operation = 2
-size = Vector3(0.044763185, 0.11602173, 0.06800537)
+size = Vector3(0.044763185, 0.087185666, 0.06800537)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="Fletch2"]
-transform = Transform3D(-1, 7.0937574e-08, 5.109406e-08, -8.742278e-08, -0.8114312, -0.5844479, 0, -0.5844479, 0.8114312, -0.0029724133, -0.07240226, 0.09940207)
+transform = Transform3D(-1, 7.0937574e-08, 5.109406e-08, -8.742278e-08, -0.8114312, -0.5844479, 0, -0.5844479, 0.8114312, -0.0029724152, -0.055282604, 0.096196294)
 operation = 2
-size = Vector3(0.044763185, 0.12814942, 0.06800537)
+size = Vector3(0.044763185, 0.10411377, 0.042791747)
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="Fletch2"]
-transform = Transform3D(-1, 7.0937574e-08, 5.109406e-08, -8.742278e-08, -0.8114312, -0.5844479, 0, -0.5844479, 0.8114312, -0.003, -0.052, -0.107)
+transform = Transform3D(-1, 7.0937574e-08, 5.109406e-08, -8.742278e-08, -0.8114312, -0.5844479, 0, -0.5844479, 0.8114312, -0.003000002, -0.03407289, -0.09408766)
 operation = 2
-size = Vector3(0.044763185, 0.14086303, 0.06800537)
+size = Vector3(0.044763185, 0.09667663, 0.06800537)
 
 [node name="Area3D" type="Area3D" parent="."]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0.48748127)
+transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0, 0.4948006)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.14638448)
 shape = SubResource("SphereShape3D_mq4l2")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
