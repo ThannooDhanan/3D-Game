@@ -1,21 +1,113 @@
-[gd_scene load_steps=4 format=3 uid="uid://b16dan5ecdvxe"]
+[gd_scene load_steps=6 format=3 uid="uid://b16dan5ecdvxe"]
 
 [ext_resource type="Script" uid="uid://cq8cwuktn6306" path="res://Scripts/Traps/damaging_traps.gd" id="1_ivnwb"]
 [ext_resource type="PackedScene" uid="uid://d10vpl6wlwk1r" path="res://Traps_Scenes/projectile.tscn" id="2_ucj6b"]
 [ext_resource type="PackedScene" uid="uid://bqm7iq6el71nw" path="res://debugCamera.tscn" id="3_dn62v"]
+[ext_resource type="PackedScene" uid="uid://8l5w6rx4so0o" path="res://Traps_Scenes/muzzle.tscn" id="3_pa5qm"]
+[ext_resource type="CylinderMesh" uid="uid://b0n2ixi88fpt5" path="res://Objects/muzzle.tres" id="5_5l6gt"]
 
-[node name="Shooting Trap" type="Node3D" node_paths=PackedStringArray("storage_node")]
+[node name="Shooting Trap" type="Node3D" node_paths=PackedStringArray("muzzles", "s_timer", "weapon")]
 script = ExtResource("1_ivnwb")
+type = 1
 ammo = 10
 projectile = ExtResource("2_ucj6b")
-storage_node = NodePath("Ammo")
-min_hazard_required = 1
-max_hazard_required = 5
+muzzles = NodePath("Muzzles")
+shoot_time = 0.5
+s_timer = NodePath("ShootTimer")
+max_hazard_required = 1
 damage = 2
+weapon = NodePath("Muzzles")
 
-[node name="Ammo" type="Node3D" parent="."]
+[node name="Muzzles" type="Node3D" parent="."]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="Muzzle" parent="Muzzles" instance=ExtResource("3_pa5qm")]
+
+[node name="Muzzle2" parent="Muzzles" instance=ExtResource("3_pa5qm")]
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 0, 0, 0)
+
+[node name="Muzzle3" parent="Muzzles" instance=ExtResource("3_pa5qm")]
+transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, 0, 0, 0)
+
+[node name="Muzzle4" parent="Muzzles" instance=ExtResource("3_pa5qm")]
+transform = Transform3D(-0.7071067, 0, 0.7071067, 0, 1, 0, -0.7071067, 0, -0.7071067, 0, 0, 0)
+
+[node name="Muzzle5" parent="Muzzles" instance=ExtResource("3_pa5qm")]
+transform = Transform3D(-0.99999994, 0, -8.742277e-08, 0, 1, 0, 8.742277e-08, 0, -0.99999994, 0, 0, 0)
+
+[node name="Muzzle6" parent="Muzzles" instance=ExtResource("3_pa5qm")]
+transform = Transform3D(-0.70710677, 0, -0.70710665, 0, 1, 0, 0.70710665, 0, -0.70710677, 0, 0, 0)
+
+[node name="Muzzle7" parent="Muzzles" instance=ExtResource("3_pa5qm")]
+transform = Transform3D(1.192488e-08, 0, -0.99999994, 0, 1, 0, 0.99999994, 0, 1.192488e-08, 0, 0, 0)
+
+[node name="Muzzle8" parent="Muzzles" instance=ExtResource("3_pa5qm")]
+transform = Transform3D(0.7071066, 0, -0.7071068, 0, 1, 0, 0.7071068, 0, 0.7071066, 0, 0, 0)
 
 [node name="Delete later" parent="." instance=ExtResource("3_dn62v")]
 transform = Transform3D(1, 0, 0, 0, 0.9396927, 0.34202015, 0, -0.34202015, 0.9396927, 0, 0.20098081, 0.7701355)
+
+[node name="ShootTimer" type="Timer" parent="."]
+
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+mesh = ExtResource("5_5l6gt")
+skeleton = NodePath("../..")
+
+[node name="Node3D2" type="Node3D" parent="."]
+transform = Transform3D(0.70710677, 0.70710677, -3.090862e-08, 0, -4.371139e-08, -1, -0.70710677, 0.70710677, -3.090862e-08, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+mesh = ExtResource("5_5l6gt")
+skeleton = NodePath("../..")
+
+[node name="Node3D3" type="Node3D" parent="."]
+transform = Transform3D(-4.3711385e-08, 0.99999994, -4.371139e-08, 0, -4.3711385e-08, -1, -0.99999994, -4.3711385e-08, 1.9106855e-15, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+mesh = ExtResource("5_5l6gt")
+skeleton = NodePath("../..")
+
+[node name="Node3D4" type="Node3D" parent="."]
+transform = Transform3D(-0.7071067, 0.7071067, -3.090862e-08, 0, -4.3711385e-08, -1, -0.7071067, -0.7071067, 3.090862e-08, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+mesh = ExtResource("5_5l6gt")
+skeleton = NodePath("../..")
+
+[node name="Node3D5" type="Node3D" parent="."]
+transform = Transform3D(-0.9999999, -8.742277e-08, 3.821371e-15, 0, -4.3711385e-08, -1, 8.742277e-08, -0.9999999, 4.371139e-08, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+mesh = ExtResource("5_5l6gt")
+skeleton = NodePath("../..")
+
+[node name="Node3D6" type="Node3D" parent="."]
+transform = Transform3D(-0.7071067, -0.7071067, 3.090862e-08, 0, -4.3711385e-08, -1, 0.7071067, -0.7071067, 3.090862e-08, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+mesh = ExtResource("5_5l6gt")
+skeleton = NodePath("../..")
+
+[node name="Node3D7" type="Node3D" parent="."]
+transform = Transform3D(-4.3711385e-08, -0.9999999, 4.371139e-08, 0, -4.3711385e-08, -1, 0.9999999, -4.3711385e-08, 1.9106855e-15, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D7"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+mesh = ExtResource("5_5l6gt")
+skeleton = NodePath("../..")
+
+[node name="Node3D8" type="Node3D" parent="."]
+transform = Transform3D(0.7071067, -0.7071067, 3.090862e-08, 0, -4.3711385e-08, -1, 0.7071067, 0.7071067, -3.090862e-08, 0, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D8"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+mesh = ExtResource("5_5l6gt")
+skeleton = NodePath("../..")

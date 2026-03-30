@@ -17,8 +17,9 @@ enum TrapType {
 @export_subgroup("Shooting Trap Properties")
 @export_range(0,10) var ammo : int
 @export var projectile: PackedScene
-@export var storage_node: Node3D
+@export var muzzles: Node3D
 @export_range(0.0, 5.0) var shoot_time: float
+@export var s_timer : Timer
 
 @export_subgroup("Trap Statuses")
 @export var trap_active: bool =  false
@@ -125,30 +126,40 @@ func finished_loop(_loop_Index: int):
 		trap_active = false
 
 func populate_ammo():
-	for i in range(ammo):
-		var instance : RigidBody3D = projectile.instantiate()
-		storage_node.add_child(instance)
-		instance.global_position = Vector3.ZERO
-		instance.process_mode = Node.PROCESS_MODE_DISABLED
-		instance.visible = false
-		instance.freeze = true
+	for muzzle in muzzles.get_children():
+		for i in range(ammo):
+			var instance : RigidBody3D = projectile.instantiate()
+			muzzle.add_child(instance)
+			instance.pool = self
+			instance.disable_projectile()
 
 func return_to_pool(instance: RigidBody3D):
-	instance.global_position = Vector3.ZERO
-	instance.process_mode = Node.PROCESS_MODE_DISABLED
-	instance.visible = false
-	instance.freeze = true
+	instance.disable_projectile()
+
+func get_projectile(muzzle) -> RigidBody3D:
+	var shot : RigidBody3D = null 
+	for i in muzzle.get_children(): 
+		if !i.active: 
+			shot = i 
+			break 
+	return shot
 
 func shoot_trap_activation():
-	var s_timer = Timer.new()
 	s_timer.start(shoot_time)
 	s_timer.timeout.connect(shoot_projectile)
-	pass
+	trap_active = true
 
 func shoot_projectile():
-	if ammo <= 0 :
-		return
-	for i : RigidBody3D in storage_node:
-		if !i.active:
-			i.process_mode = Node.PROCESS_MODE_INHERIT
-	pass
+	for muzzle in muzzles.get_children():
+		var shot = get_projectile(muzzle) 
+		if shot == null:
+			return
+		shot.active = true 
+		shot.freeze = false 
+		shot.visible = true 
+		shot.process_mode = Node.PROCESS_MODE_INHERIT 
+		shot.global_position = muzzle.global_position
+		shot.activate_timer()
+		shot.global_transform.basis = muzzle.global_transform.basis
+		shot.linear_velocity = -muzzle.global_transform.basis.z * shot.speed
+		shot.damage = damage
