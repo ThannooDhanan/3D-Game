@@ -15,10 +15,10 @@ func _ready():
 		lifeTimer.connect("timeout", go_back)
 
 func _on_area_3d_body_entered(body: Node3D):
-	if body is Player:
+	if body is Player and active:
 		body.health.take_damage(damage)
-		visible = false 
-	pool.return_to_pool(self)
+		visible = false
+	pool.return_to_pool.call_deferred(self)
 
 func return_to_shooter():
 	process_mode = Node.PROCESS_MODE_DISABLED
@@ -33,9 +33,19 @@ func disable_projectile():
 	freeze = true
 	process_mode = Node.PROCESS_MODE_DISABLED
 
+func activate_projectile(muzzle: Node3D):
+	active = true 
+	freeze = false 
+	visible = true 
+	process_mode = Node.PROCESS_MODE_INHERIT 
+	global_position = muzzle.global_position
+	activate_timer()
+	global_transform.basis = muzzle.global_transform.basis
+	linear_velocity = muzzle.global_transform.basis.z * speed
+
 func go_back(): 
 	if active:
-		pool.return_to_pool(self)
+		pool.return_to_pool.call_deferred(self)
 
 func activate_timer(): 
 	lifeTimer.start(lifetime)

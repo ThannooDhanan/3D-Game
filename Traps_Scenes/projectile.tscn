@@ -22,8 +22,17 @@ transform = Transform3D(0.05, 0, 0, 0, -2.1855694e-08, -0.05, 0, 0.5, -2.1855695
 mesh = SubResource("CylinderMesh_ins2i")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.15, 0, 0, 0, -6.5567085e-09, -0.03, 0, 0.15, -1.3113416e-09, 0, 0, 0.525)
+transform = Transform3D(0.15, 0, 0, 0, -6.5567085e-09, -0.029999997, 0, 0.15, -1.3113416e-09, 0, 0, 0.525)
 mesh = SubResource("PrismMesh_sqdik")
+
+[node name="Area3D" type="Area3D" parent="MeshInstance3D2"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -5, -2.1855693e-07, 0, -0.20132923, 4.4001865e-08)
+collision_layer = 8
+collision_mask = 19
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D2/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.14638448)
+shape = SubResource("SphereShape3D_mq4l2")
 
 [node name="Fletch" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.001, 0, -0.383)
@@ -50,7 +59,7 @@ operation = 2
 size = Vector3(0.044763185, 0.09924011, 0.06800537)
 
 [node name="Fletch2" type="CSGBox3D" parent="."]
-transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0.0007019043, -0.010650635, -0.38256836)
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0.001, -0.011, -0.383)
 size = Vector3(0.025, 0.17, 0.2)
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Fletch2"]
@@ -73,13 +82,6 @@ transform = Transform3D(-1, 7.0937574e-08, 5.109406e-08, -8.742278e-08, -0.81143
 operation = 2
 size = Vector3(0.044763185, 0.09667663, 0.06800537)
 
-[node name="Area3D" type="Area3D" parent="."]
-transform = Transform3D(0.15, 0, 0, 0, 0.15, 0, 0, 0, 0.15, 0, 0, 0.4948006)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.14638448)
-shape = SubResource("SphereShape3D_mq4l2")
-
 [node name="Timer" type="Timer" parent="."]
 
-[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="body_entered" from="MeshInstance3D2/Area3D" to="." method="_on_area_3d_body_entered"]

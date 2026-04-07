@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://cik63h1rcw64t"]
+
+[ext_resource type="PackedScene" uid="uid://bwklorl2fvy2r" path="res://UI/Compass.tscn" id="1_c8xti"]
+[ext_resource type="Script" uid="uid://bb4hf86o6xc8h" path="res://UI/player_ui.gd" id="1_nplvd"]
+
+[node name="PlayerUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_nplvd")
+
+[node name="Control" parent="." node_paths=PackedStringArray("player_UI") instance=ExtResource("1_c8xti")]
+layout_mode = 0
+offset_left = 1066.0
+offset_top = 562.0
+offset_right = 1066.0
+offset_bottom = 562.0
+player_UI = NodePath("..")

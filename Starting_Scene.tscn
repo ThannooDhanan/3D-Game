@@ -50,6 +50,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.14)
 axis_lock_angular_x = true
 axis_lock_angular_z = true
 
+[node name="PlayerUI" parent="Snowman" index="4" node_paths=PackedStringArray("waypoints")]
+waypoints = NodePath("../../WaypointAndReturn")
+
 [node name="Camera3D" type="Camera3D" parent="Snowman"]
 transform = Transform3D(1, 0, 0, 0, 0.79653, 0.604599, 0, -0.604599, 0.79653, 0.3, 1.9, 1)
 
@@ -70,6 +73,8 @@ mesh = ExtResource("3_b4p0v")
 skeleton = NodePath("../..")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="environ/pine"]
+collision_layer = 16
+collision_mask = 9
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="environ/pine/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_b4p0v")
@@ -81,6 +86,7 @@ mesh = SubResource("CylinderMesh_l2gww")
 skeleton = NodePath("../..")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="environ/pine2"]
+collision_layer = 16
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="environ/pine2/StaticBody3D"]
 shape = SubResource("CylinderShape3D_b4p0v")
@@ -92,6 +98,7 @@ mesh = SubResource("BoxMesh_na0wc")
 skeleton = NodePath("../..")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="environ/pine3"]
+collision_layer = 16
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="environ/pine3/StaticBody3D"]
 shape = SubResource("BoxShape3D_b4p0v")
@@ -104,6 +111,7 @@ skeleton = NodePath("../..")
 metadata/_edit_group_ = true
 
 [node name="StaticBody3D" type="StaticBody3D" parent="environ/pine4"]
+collision_layer = 16
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="environ/pine4/StaticBody3D"]
 shape = SubResource("BoxShape3D_b4p0v")
@@ -125,7 +133,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 1.7484555e-07, 0, -1.7484555e-07, 1, 2.98
 damage = 0
 
 [node name="Shooting Trap" parent="." instance=ExtResource("11_14svt")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.9866147, 0.7304537, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.7694144, 0.52726936, 0)
 
 [editable path="Snowman"]
 [editable path="WaypointAndReturn"]

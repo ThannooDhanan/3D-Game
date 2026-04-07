@@ -1,4 +1,5 @@
 extends Node3D
+class_name Waypoint_and_Home
 
 @onready var dig_spots := %Checkpoints
 @onready var home := %Home

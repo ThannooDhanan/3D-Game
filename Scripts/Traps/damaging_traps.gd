@@ -154,12 +154,5 @@ func shoot_projectile():
 		var shot = get_projectile(muzzle) 
 		if shot == null:
 			return
-		shot.active = true 
-		shot.freeze = false 
-		shot.visible = true 
-		shot.process_mode = Node.PROCESS_MODE_INHERIT 
-		shot.global_position = muzzle.global_position
-		shot.activate_timer()
-		shot.global_transform.basis = muzzle.global_transform.basis
-		shot.linear_velocity = -muzzle.global_transform.basis.z * shot.speed
+		shot.activate_projectile(muzzle)
 		shot.damage = damage

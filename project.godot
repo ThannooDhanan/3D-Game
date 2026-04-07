@@ -73,6 +73,7 @@ Interact={
 3d_physics/layer_2="Ground"
 3d_physics/layer_3="Enemies"
 3d_physics/layer_4="Traps"
+3d_physics/layer_5="Environment"
 
 [physics]
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://d2w684tflowaa"]
+[gd_scene load_steps=20 format=3 uid="uid://d2w684tflowaa"]
 
 [ext_resource type="Script" uid="uid://bdts2pfalxpxs" path="res://Scripts/player.gd" id="1_p2611"]
 [ext_resource type="Material" uid="uid://cdn81ab24png" path="res://Materials/Color Materials/Snowman_Snow.tres" id="1_qoueb"]
@@ -8,6 +8,7 @@
 [ext_resource type="Material" uid="uid://ckm4aknro6eh1" path="res://Materials/Color Materials/carrot.tres" id="5_clocp"]
 [ext_resource type="Material" uid="uid://cdujprnbgrx66" path="res://Materials/Color Materials/charcoal.tres" id="6_6cxhj"]
 [ext_resource type="Script" uid="uid://bwyr768688hks" path="res://Scripts/components/health_component.gd" id="8_i22mi"]
+[ext_resource type="PackedScene" uid="uid://cik63h1rcw64t" path="res://UI/player_ui.tscn" id="9_5hecn"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_1q11d"]
 
@@ -30,7 +31,7 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_6q38s"]
 
 [node name="Snowman" type="CharacterBody3D"]
-collision_mask = 11
+collision_mask = 27
 script = ExtResource("1_p2611")
 max_velocity = 5
 
@@ -131,5 +132,8 @@ metadata/_custom_type_script = "uid://bwyr768688hks"
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(0.7, 0, 0, 0, 0.6, 0, 0, 0, 0.7, 0, 0.655056, 0)
 shape = SubResource("CapsuleShape3D_6q38s")
+
+[node name="PlayerUI" parent="." node_paths=PackedStringArray("player") instance=ExtResource("9_5hecn")]
+player = NodePath("..")
 
 [connection signal="destroyed" from="HealthComponent" to="." method="_on_health_component_destroyed"]
