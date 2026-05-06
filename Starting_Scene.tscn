@@ -45,13 +45,11 @@ physics_material_override = SubResource("PhysicsMaterial_b4p0v")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="MeshInstance3D/StaticBody3D2"]
 shape = SubResource("ConcavePolygonShape3D_t3ix3")
 
-[node name="Snowman" parent="." instance=ExtResource("1_g45l7")]
+[node name="Snowman" parent="." node_paths=PackedStringArray("waypoints") instance=ExtResource("1_g45l7")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.14)
 axis_lock_angular_x = true
 axis_lock_angular_z = true
-
-[node name="PlayerUI" parent="Snowman" index="4" node_paths=PackedStringArray("waypoints")]
-waypoints = NodePath("../../WaypointAndReturn")
+waypoints = NodePath("../WaypointAndReturn")
 
 [node name="Camera3D" type="Camera3D" parent="Snowman"]
 transform = Transform3D(1, 0, 0, 0, 0.79653, 0.604599, 0, -0.604599, 0.79653, 0.3, 1.9, 1)
@@ -120,7 +118,16 @@ shape = SubResource("BoxShape3D_b4p0v")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.011281, 0, -5.5967946)
 
 [node name="WaypointAndReturn" parent="." instance=ExtResource("6_t3ix3")]
-transform = Transform3D(-0.041718695, 0, 0.9991294, 0, 1, 0, -0.9991294, 0, -0.041718695, -2.5750403, 0, -0.45673704)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2.5750403, 0, -0.45673704)
+
+[node name="DigSpot2" parent="WaypointAndReturn/Checkpoints/Level 2" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.4201145, 0, -6.7597184)
+
+[node name="DigSpot" parent="WaypointAndReturn/Checkpoints/Level 2" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.2306314, 0, 15.697506)
+
+[node name="DigSpot" parent="WaypointAndReturn/Checkpoints/Level 3" index="0"]
+transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, -6.293601, 2.1175675, 5.200139)
 
 [node name="Ramp" parent="." instance=ExtResource("9_na0wc")]
 transform = Transform3D(-1.18784946e-07, 3.4367704, 0, -2.7174828, -1.50226e-07, 0, 0, 0, 1.8880184, -2.304203, -0.19730997, -5.2471685)
@@ -137,4 +144,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.7694144, 0.52726936, 0)
 
 [editable path="Snowman"]
 [editable path="WaypointAndReturn"]
-[editable path="WaypointAndReturn/Checkpoints/PointOfInterest"]
+[editable path="WaypointAndReturn/Checkpoints/Level 1/PointOfInterest"]

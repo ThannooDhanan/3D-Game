@@ -16,16 +16,37 @@ unique_name_in_owner = true
 [node name="Checkpoints" type="Node3D" parent="."]
 unique_name_in_owner = true
 
-[node name="PointOfInterest" parent="Checkpoints" instance=ExtResource("2_bmrny")]
+[node name="Level 1" type="Node3D" parent="Checkpoints"]
+
+[node name="PointOfInterest" parent="Checkpoints/Level 1" instance=ExtResource("2_bmrny")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 0)
 
-[node name="PointOfInterest2" parent="Checkpoints" instance=ExtResource("2_bmrny")]
+[node name="MeshInstance3D" parent="Checkpoints/Level 1/PointOfInterest" index="1"]
+skeleton = NodePath("../../../..")
+
+[node name="PointOfInterest2" parent="Checkpoints/Level 1" instance=ExtResource("2_bmrny")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, -12)
 
-[node name="PointOfInterest3" parent="Checkpoints" instance=ExtResource("2_bmrny")]
+[node name="PointOfInterest3" parent="Checkpoints/Level 1" instance=ExtResource("2_bmrny")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 12)
+
+[node name="Level 2" type="Node3D" parent="Checkpoints"]
+
+[node name="DigSpot2" parent="Checkpoints/Level 2" instance=ExtResource("2_bmrny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7.9492025)
+level = 2
+
+[node name="DigSpot" parent="Checkpoints/Level 2" instance=ExtResource("2_bmrny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 6.408202)
+level = 2
+
+[node name="Level 3" type="Node3D" parent="Checkpoints"]
+
+[node name="DigSpot" parent="Checkpoints/Level 3" instance=ExtResource("2_bmrny")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.4032288, 0, 0)
+level = 3
 
 [node name="Home" parent="." instance=ExtResource("3_bmrny")]
 unique_name_in_owner = true
 
-[editable path="Checkpoints/PointOfInterest"]
+[editable path="Checkpoints/Level 1/PointOfInterest"]

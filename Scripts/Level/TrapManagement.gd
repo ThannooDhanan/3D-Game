@@ -7,6 +7,7 @@ extends Node
 @export var max_unease: int = 25
 
 @export_group("Bonuses")
+@export var difficulty : int = 0
 @export var extra_gold_coin : int = 0
 @export var extra_souls : int = 0
 

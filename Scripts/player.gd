@@ -36,7 +36,10 @@ var camera_input_direction := Vector2.ZERO
 var last_mov_direction := Vector3.FORWARD
 var current_state = player_state.IDLE
 
+@export_group("Digging Parameters")
 """Digging parameters"""
+#the whole component needs to be in the player for the UI to work properly.
+@export var waypoints : Waypoint_and_Home
 var canDig := false
 var isDigging := false
 var digTime := 0.0

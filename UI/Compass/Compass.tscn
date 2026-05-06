@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bwklorl2fvy2r"]
+[gd_scene load_steps=6 format=3 uid="uid://bwklorl2fvy2r"]
 
-[ext_resource type="Script" uid="uid://idik8wy67tyx" path="res://UI/compass.gd" id="1_cuv00"]
-[ext_resource type="Texture2D" uid="uid://dy0gib8ee00c5" path="res://icon.svg" id="1_ovsbx"]
-[ext_resource type="Texture2D" uid="uid://c5wno254pwfkk" path="res://picture/Arrow.png" id="2_cuv00"]
+[ext_resource type="Script" uid="uid://idik8wy67tyx" path="res://UI/Compass/compass.gd" id="1_cuv00"]
+[ext_resource type="Texture2D" uid="uid://3i1pbotu1qjs" path="res://UI/Compass/Atlas/Compass_Atlas_glo.tres" id="2_atnj8"]
+[ext_resource type="Texture2D" uid="uid://dk5owiovmb1wu" path="res://UI/Compass/Atlas/Compass_Atlas_base.tres" id="2_c73pl"]
+[ext_resource type="Texture2D" uid="uid://cygxp34wlrww5" path="res://UI/Compass/Atlas/Compass_Atlas_needle.tres" id="3_c73pl"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_cuv00"]
 
@@ -21,19 +22,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 104.0
-offset_top = 10.0
-offset_right = 296.0
-offset_bottom = 136.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Glow" type="TextureRect" parent="Compass Glow"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Compass" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -46,7 +38,22 @@ offset_right = 64.0
 offset_bottom = 64.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_ovsbx")
+texture = ExtResource("2_atnj8")
+
+[node name="Compass" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -64.0
+offset_top = -71.0
+offset_right = 64.0
+offset_bottom = 57.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_c73pl")
 
 [node name="Needle_container" type="Control" parent="."]
 layout_mode = 1
@@ -56,19 +63,17 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Needle" type="TextureRect" parent="Needle_container"]
+[node name="TextureRect" type="TextureRect" parent="Needle_container"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 32.0
-offset_top = 32.0
-offset_right = 96.0
-offset_bottom = 96.0
+offset_left = -12.5
+offset_top = -32.0
+offset_right = 12.5
+offset_bottom = 32.0
 grow_horizontal = 2
 grow_vertical = 2
-rotation = 3.1415927
-texture = ExtResource("2_cuv00")
-metadata/_edit_use_anchors_ = true
+texture = ExtResource("3_c73pl")

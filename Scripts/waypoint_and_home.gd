@@ -21,14 +21,17 @@ func setUpWorldTrapTimer():
 	TrapManagement.start_hazard_timer()
 
 func setUpPoints():
-	var randomPoint = randi_range(0, len(dig_spots.get_children()) -1)
-	activeDigSpot = dig_spots.get_child(randomPoint)
-	for waypoint in dig_spots.get_children():
-		waypoint.playerEnteredSite.connect(playerInPoint)
-		waypoint.playerLeftSite.connect(playerLeftPoint)
-		if waypoint != activeDigSpot:
-			waypoint.active = false
-			waypoint.visible = false
+	var level = dig_spots.get_child(TrapManagement.difficulty)
+	var randomPoint = randi_range(0, len(level.get_children()) -1)
+	activeDigSpot = level.get_child(randomPoint)
+	for difficulty in dig_spots.get_children():
+		for waypoint in difficulty.get_children():
+			waypoint.playerEnteredSite.connect(playerInPoint)
+			waypoint.playerLeftSite.connect(playerLeftPoint)
+			if waypoint != activeDigSpot:
+				waypoint.active = false
+				waypoint.visible = false
+	
 	setUpActiveDigSpot()
 
 func playerInPoint(site: Area3D, player: Player) -> void:
@@ -99,5 +102,4 @@ func activateHome():
 	home.active = true
 
 func cashoutTreasure(player: Player):
-	
 	print("Player has cashed out treasure worth: ", player.treasureInHand.worth)

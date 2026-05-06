@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://cygxp34wlrww5"]
+
+[ext_resource type="Texture2D" uid="uid://imyxyx55bgid" path="res://UI/Compass/Compass.png" id="1_b7ie2"]
+
+[resource]
+atlas = ExtResource("1_b7ie2")
+region = Rect2(180, 30, 25, 64)
